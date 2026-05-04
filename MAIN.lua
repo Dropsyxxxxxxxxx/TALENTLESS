@@ -1670,15 +1670,14 @@ function playbuttonclicked()
         playSound("7383525713", 0.5)
         return
     end
-
-    songisplaying = true
-
     bpm = tonumber(bpmbox.Text)
-    if bpm == 0 or nil then
-        SendNotification("Error", translateText("invalidbpm"), 3)
+    if not bpm or bpm <= 0 then
+        NotificationLibrary:SendNotification("Error", translateText("invalidbpm"), 3)
         playSound("7383525713", 0.5)
         return
     end
+
+    songisplaying = true
 
     -- find which song to play
     
@@ -1727,7 +1726,16 @@ function playbuttonclicked()
     end
 
     repeat wait() until songscript
-    loadstring(songscript)()
+    local okRunSong, runSongErr = pcall(function()
+        loadstring(songscript)()
+    end)
+    if not okRunSong then
+        songisplaying = false
+        _G.songisplaying = false
+        NotificationLibrary:SendNotification("Error", "Song script failed to run.", 5)
+        warn("[TALENTLESS] Song load error: " .. tostring(runSongErr))
+        return
+    end
     repeat wait() until _G.STOPIT == true 
 end -- close the play song onclick function
 
