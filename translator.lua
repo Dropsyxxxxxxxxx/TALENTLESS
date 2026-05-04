@@ -1,0 +1,1555 @@
+local translator = {}
+
+local translations = {
+    ["play song"] = {
+        ["en"] = "play song!",
+        ["pt-BR"] = "tocar!",
+        ["es"] = "canci√≥n",
+        ["ru"] = "–≤–æ—Å–ø—?–æ–∏–∑–≤.",
+        ["zh-CN"] = "Ê?≠Ê?æ",
+        ["id"] = "putar",
+        ["fil"] = "kanta",
+        ["vi"] = "ph√°t",
+        ["fr"] = "jouer",
+        ["de"] = "abspielen",
+        ["ja"] = "Ê?≤„??Â?çÁ??",
+        ["ko"] = "Î?∏Î?? Ï?¨Ï?ù",
+        ["tr"] = "≈?arkƒ±yƒ± √ßal",
+        ["ar"] = "ÿ™ÿ¥ÿ∫Ÿ?Ÿ?"
+    },    
+
+    ["search"] = {
+        ["en"] = "search...",
+        ["pt-BR"] = "procurar...",
+        ["es"] = "buscar...",
+        ["ru"] = "–ø–æ–∏—Å–∫...",
+        ["zh-CN"] = "Êê?Á¥¢...",
+        ["id"] = "cari...",
+        ["fil"] = "maghanap...",
+        ["vi"] = "t√¨m ki·∫øm...",
+        ["fr"] = "rechercher...",
+        ["de"] = "suchen...",
+        ["ja"] = "Ê§?Á¥¢...",
+        ["ko"] = "Í≤?Ï??...",
+        ["tr"] = "ara...",
+        ["ar"] = "ÿ®ÿ≠ÿ´..."
+    },
+
+    ["songname"] = {
+        ["en"] = "SONG NAME",
+        ["pt-BR"] = "NOME DA M√?SICA",
+        ["es"] = "NOMBRE DE LA CANCI√?N",
+        ["ru"] = "–ù–ê–?–?–ê–ù–?–? –?–?–°–ù–?",
+        ["zh-CN"] = "Ê≠?Ê?≤ÂêçÁß∞",
+        ["id"] = "NAMA LAGU",
+        ["fil"] = "PANGALAN NG KANTA",
+        ["vi"] = "T√?N B√?I H√ÅT",
+        ["fr"] = "NOM DE LA CHANSON",
+        ["de"] = "LIEDNAME",
+        ["ja"] = "Ê?≤Âêç",
+        ["ko"] = "Î?∏Î?? Ï†?Î™©",
+        ["tr"] = "≈?ARKI ADI",
+        ["ar"] = "ÿßÿ≥Ÿ? ÿßŸ?ÿ£ÿ∫Ÿ?Ÿ?ÿ©"
+    },
+
+    ["toggle ui"] = {
+        ["en"] = "toggle ui",
+        ["pt-BR"] = "alternar ui",
+        ["es"] = "alternar ui",
+        ["ru"] = "–ø–µ—?–µ–∫–ª—?—?–∏—?—? ui",
+        ["zh-CN"] = "Â??Êç¢Á??Èù¢",
+        ["id"] = "alih ui",
+        ["fil"] = "i-toggle ui",
+        ["vi"] = "chuy·ª?n ui",
+        ["fr"] = "basculer ui",
+        ["de"] = "ui umschalten",
+        ["ja"] = "uiÂ??Ê?ø",
+        ["ko"] = "ui Ï†?Ì??",
+        ["tr"] = "ui deƒ?i≈?tir",
+        ["ar"] = "ÿ™ÿ®ÿØŸ?Ÿ? ui"
+    },    
+
+    ["spoof midi"] = {
+        ["en"] = "spoof midi",
+        ["pt-BR"] = "falsificar midi",
+        ["es"] = "falsificar midi",
+        ["ru"] = "–ø–æ–¥–¥–µ–ª–∞—?—? midi",
+        ["zh-CN"] = "‰º™Ë£? midi",
+        ["id"] = "palsukan midi",
+        ["fil"] = "peke ang midi",
+        ["vi"] = "gi·∫£ midi",
+        ["fr"] = "simuler midi",
+        ["de"] = "midi vort√§uschen",
+        ["ja"] = "midi„??ÂÅΩË£?",
+        ["ko"] = "midi Ï?§Ì?∏Ì??",
+        ["tr"] = "midi sahteleme",
+        ["ar"] = "ÿ™ÿ≤Ÿ?Ÿ?ŸÅ midi"
+    },
+
+    ["shuffle play songs"] = {
+        ["en"] = "SHUFFLE PLAY SONGS",
+        ["pt-BR"] = "EMBARALHAR M√?SICAS",
+        ["es"] = "MEZCLAR CANCIONES",
+        ["ru"] = "–°–?–£–ß–ê–?–ù–´–? –?–†–?–?–?–†–´–?",
+        ["zh-CN"] = "È?èÊ?∫Ê?≠Ê?æÊ≠?Ê?≤",
+        ["id"] = "ACAK PUTAR LAGU",
+        ["fil"] = "I-SHUFFLE ANG MGA KANTA",
+        ["vi"] = "PH√ÅT NG·∫™U NHI√?N",
+        ["fr"] = "M√?LANGER LES CHANSONS",
+        ["de"] = "LIEDER MISCHEN",
+        ["ja"] = "Ê?≤„??„?∑„?£„??„??„?´",
+        ["ko"] = "Î?∏Î?? Ï??Ï?¥ Ï?¨Ï?ù",
+        ["tr"] = "≈?ARKILARI KARMA √?AL",
+        ["ar"] = "ÿ™ÿ¥ÿ∫Ÿ?Ÿ? ÿßŸ?ÿ£ÿ∫ÿßŸ?Ÿ? ÿπÿ¥Ÿ?ÿßÿ¶Ÿ?ÿßŸ?"
+    },    
+    
+    ["play random song"] = {
+        ["en"] = "PLAY A RANDOM SONG",
+        ["pt-BR"] = "M√?SICA ALEAT√?RIA",
+        ["es"] = "CANCI√?N ALEATORIA",
+        ["ru"] = "–°–?–£–ß–ê–?–ù–ê–Ø –?–?–°–ù–Ø",
+        ["zh-CN"] = "Ê?≠Ê?æÈ?èÊ?∫Ê≠?Ê?≤",
+        ["id"] = "ACAK PUTAR LAGU",
+        ["fil"] = "I-RANDOM ANG KANTA",
+        ["vi"] = "PH√ÅT B√?I NG·∫™U NHI√?N",
+        ["fr"] = "CHACUN UNE CHANSON",
+        ["de"] = "ZUF√?LLIGES LIED SPIELEN",
+        ["ja"] = "„?©„?≥„??„?†Â?çÁ??",
+        ["ko"] = "Î??Îç§ Î?∏Î?? Ï?¨Ï?ù",
+        ["tr"] = "RANDOM ≈?ARKI √?AL",
+        ["ar"] = "ÿ™ÿ¥ÿ∫Ÿ?Ÿ? ÿ£ÿ∫Ÿ?Ÿ?ÿ© ÿπÿ¥Ÿ?ÿßÿ¶Ÿ?ÿ©"
+    },      
+
+    ["new"] = {
+        ["en"] = "new",
+        ["pt-BR"] = "novas",
+        ["es"] = "nuevas",
+        ["ru"] = "–Ω–æ–≤—?–µ",
+        ["zh-CN"] = "Ê?∞Ê≠?",
+        ["id"] = "baru",
+        ["fil"] = "bago",
+        ["vi"] = "m·ª?i",
+        ["fr"] = "nouvelles",
+        ["de"] = "neu",
+        ["ja"] = "Ê?∞Áù?",
+        ["ko"] = "Ï??Î°?Ï?¥",
+        ["tr"] = "yeni",
+        ["ar"] = "ÿ¨ÿØŸ?ÿØ"
+    },
+
+    ["peak"] = {
+        ["en"] = "peak",
+        ["pt-BR"] = "top",               -- natural slang for ‚??best‚?ù
+        ["es"] = "top",                   -- widely used in gaming/music context
+        ["ru"] = "—?–æ–ø",                  -- ‚??top‚?ù is commonly used in Russian slang
+        ["zh-CN"] = "Â∑?Â≥∞",               -- literally ‚??pinnacle/peak‚?ù, natural in Chinese
+        ["id"] = "terbaik",              -- means ‚??the best‚?ù
+        ["fil"] = "pinaka",               -- short for ‚??pinakamahusay‚?ù, natural in Filipino
+        ["vi"] = "ƒ?·ª?nh",                  -- literally ‚??peak/top‚?ù, sounds natural
+        ["fr"] = "top",                   -- common slang in French gaming/music
+        ["de"] = "top",                   -- used as-is in German
+        ["ja"] = "„??„??„??",                  -- ‚??top‚?ù in katakana, widely used
+        ["ko"] = "Ïµ?Í≥†",                   -- literally ‚??the best/top‚?ù
+        ["tr"] = "en iyi",                 -- literally ‚??the best‚?ù
+        ["ar"] = "ÿßŸ?ÿ£ŸÅÿ∂Ÿ?"                  -- literally ‚??the best‚?ù
+    },
+
+    ["best"] = {
+        ["en"] = "best",
+        ["pt-BR"] = "melhores",
+        ["es"] = "mejores",
+        ["ru"] = "–ª—?—?—?–∏–µ",
+        ["zh-CN"] = "Ê??‰Ω≥",
+        ["id"] = "terbaik",
+        ["fil"] = "pinakamahusay",
+        ["vi"] = "hay nh·∫•t",
+        ["fr"] = "meilleurs",
+        ["de"] = "beste",
+        ["ja"] = "„??„?π„??",
+        ["ko"] = "Ïµ?Í≥†",
+        ["tr"] = "en iyi",
+        ["ar"] = "ÿßŸ?ÿ£ŸÅÿ∂Ÿ?"
+    },
+
+    ["epic"] = {
+        ["en"] = "epic",
+        ["pt-BR"] = "√©pico",
+        ["es"] = "√©pico",
+        ["ru"] = "—ç–ø–∏–∫",
+        ["zh-CN"] = "Âè≤ËØ?",
+        ["id"] = "epik",
+        ["fil"] = "epiko",
+        ["vi"] = "h√πng tr√°ng",
+        ["fr"] = "√©pique",
+        ["de"] = "episch",
+        ["ja"] = "„?®„??„??„?Ø",
+        ["ko"] = "Ï?êÌ?Ω",
+        ["tr"] = "epik",
+        ["ar"] = "Ÿ?Ÿ?ÿ≠Ÿ?Ÿ?"
+    },
+
+    ["beautiful"] = {
+        ["en"] = "beautiful",
+        ["pt-BR"] = "bonitas",
+        ["es"] = "hermosas",
+        ["ru"] = "–∫—?–∞—Å–∏–≤—?–µ",
+        ["zh-CN"] = "Áæ?‰∏Ω",
+        ["id"] = "indah",
+        ["fil"] = "maganda",
+        ["vi"] = "tuy·ª?t ƒ?·∫πp",
+        ["fr"] = "belles",
+        ["de"] = "sch√∂ne",
+        ["ja"] = "Áæ?„Å?„Å?",
+        ["ko"] = "Ï??Î¶?Î?§Ï?¥",
+        ["tr"] = "g√ºzel",
+        ["ar"] = "ÿ¨Ÿ?Ÿ?Ÿ?ÿ©"
+    },
+
+    ["video games"] = {
+        ["en"] = "video games",
+        ["pt-BR"] = "videogames",
+        ["es"] = "videojuegos",
+        ["ru"] = "–≤–∏–¥–µ–æ–∏–≥—?—?",
+        ["zh-CN"] = "Á?µÂ≠êÊ∏∏Ê?è",
+        ["id"] = "video game",
+        ["fil"] = "mga video game",
+        ["vi"] = "tr√≤ ch∆°i ƒ?i·ª?n t·ª≠",
+        ["fr"] = "jeux vid√©o",
+        ["de"] = "videospiele",
+        ["ja"] = "„??„??„?™„?≤„?º„?†",
+        ["ko"] = "Îπ?Î??Ï?§ Í≤?Ï??",
+        ["tr"] = "video oyunlarƒ±",
+        ["ar"] = "ÿ£Ÿ?ÿπÿßÿ® ŸÅŸ?ÿØŸ?Ÿ?"
+    },
+
+    ["movies/tv"] = {
+        ["en"] = "movies/tv",
+        ["pt-BR"] = "filmes/tv",
+        ["es"] = "pel√≠culas/tv",
+        ["ru"] = "—?–∏–ª—?–º—?/—?–≤",
+        ["zh-CN"] = "Á?µÂΩ±/Á?µËß?",
+        ["id"] = "film/tv",
+        ["fil"] = "pelikula/tv",
+        ["vi"] = "phim/tivi",
+        ["fr"] = "films/tv",
+        ["de"] = "filme/tv",
+        ["ja"] = "Ê?†Á?ª/„??„?¨„??",
+        ["ko"] = "Ï?ÅÌ??/TV",
+        ["tr"] = "filmler/tv",
+        ["ar"] = "ÿ£ŸÅŸ?ÿßŸ?/ÿ™Ÿ?ŸÅÿßÿ≤"
+    },
+
+    ["memes"] = {
+        ["en"] = "memes",
+        ["pt-BR"] = "memes",
+        ["es"] = "memes",
+        ["ru"] = "–º–µ–º—?",
+        ["zh-CN"] = "Ê¢?Ê≠?",
+        ["id"] = "meme",
+        ["fil"] = "meme",
+        ["vi"] = "meme",
+        ["fr"] = "m√®mes",
+        ["de"] = "memes",
+        ["ja"] = "„??„?º„?†",
+        ["ko"] = "Î∞?",
+        ["tr"] = "memler",
+        ["ar"] = "Ÿ?Ÿ?Ÿ?ÿßÿ™"
+    },
+
+    ["classical"] = {
+        ["en"] = "classical",
+        ["pt-BR"] = "cl√°ssicas",
+        ["es"] = "cl√°sicas",
+        ["ru"] = "–∫–ª–∞—Å—Å–∏–∫–∞",
+        ["zh-CN"] = "Âè§Â?∏",
+        ["id"] = "klasik",
+        ["fil"] = "klasiko",
+        ["vi"] = "c·ª? ƒ?i·ª?n",
+        ["fr"] = "classiques",
+        ["de"] = "klassisch",
+        ["ja"] = "„?Ø„?©„?∑„??„?Ø",
+        ["ko"] = "ÌÅ¥Î??Ï?ù",
+        ["tr"] = "klasik",
+        ["ar"] = "Ÿ?Ÿ?ÿßÿ≥Ÿ?Ÿ?Ÿ?"
+    },
+
+    ["pop/hiphop"] = {
+        ["en"] = "pop/hiphop",
+        ["pt-BR"] = "pop/hiphop",
+        ["es"] = "pop/hiphop",
+        ["ru"] = "–ø–æ–ø/—?–∏–ø-—?–æ–ø",
+        ["zh-CN"] = "ÊµÅË°?/Â?ªÂ??",
+        ["id"] = "pop/hiphop",
+        ["fil"] = "pop/hiphop",
+        ["vi"] = "pop/hiphop",
+        ["fr"] = "pop/hiphop",
+        ["de"] = "pop/hiphop",
+        ["ja"] = "„?ù„??„??/„??„??„??„??„??„??",
+        ["ko"] = "Ì?ù/Ì??Ì?©",
+        ["tr"] = "pop/hiphop",
+        ["ar"] = "ÿ®Ÿ?ÿ®/Ÿ?Ÿ?ÿ® Ÿ?Ÿ?ÿ®"
+    },
+
+    ["anime/jpop"] = {
+        ["en"] = "anime/jpop",
+        ["pt-BR"] = "anime/jpop",
+        ["es"] = "anime/jpop",
+        ["ru"] = "–∞–Ω–∏–º–µ/jpop",
+        ["zh-CN"] = "Â?®Êº´/J-pop",
+        ["id"] = "anime/jpop",
+        ["fil"] = "anime/jpop",
+        ["vi"] = "anime/jpop",
+        ["fr"] = "anime/jpop",
+        ["de"] = "anime/jpop",
+        ["ja"] = "„?¢„??„?°/J-pop",
+        ["ko"] = "Ï?†Î??Î©?/Ï†?Ïù¥Ì?ù",
+        ["tr"] = "anime/jpop",
+        ["ar"] = "ÿ£Ÿ?Ÿ?Ÿ?/J-pop"
+    },
+
+    ["sad"] = {
+        ["en"] = "sad",
+        ["pt-BR"] = "tristes",
+        ["es"] = "tristes",
+        ["ru"] = "–≥—?—?—Å—?–Ω—?–µ",
+        ["zh-CN"] = "‰º§Ê??",
+        ["id"] = "sedih",
+        ["fil"] = "malungkot",
+        ["vi"] = "bu·ª?n",
+        ["fr"] = "tristes",
+        ["de"] = "traurig",
+        ["ja"] = "Ê?≤„Å?„Å?",
+        ["ko"] = "Ï?¨Ì??",
+        ["tr"] = "√ºzg√ºn",
+        ["ar"] = "ÿ≠ÿ≤Ÿ?Ÿ?"
+    },
+
+    ["electronic"] = {
+        ["en"] = "electronic",
+        ["pt-BR"] = "eletr√¥nicas",
+        ["es"] = "electr√≥nicas",
+        ["ru"] = "—ç–ª–µ–∫—?—?–æ–Ω–Ω—?–µ",
+        ["zh-CN"] = "Á?µÂ≠ê",
+        ["id"] = "elektronik",
+        ["fil"] = "elektroniko",
+        ["vi"] = "ƒ?i·ª?n t·ª≠",
+        ["fr"] = "√©lectroniques",
+        ["de"] = "elektronisch",
+        ["ja"] = "„?®„?¨„?Ø„??„?≠„??„??„?Ø",
+        ["ko"] = "ÏùºÎ†?Ì?∏Î°?Î??",
+        ["tr"] = "elektronik",
+        ["ar"] = "ÿ•Ÿ?Ÿ?ÿ™ÿ±Ÿ?Ÿ?Ÿ?ÿ©"
+    },
+
+    ["rock"] = {
+        ["en"] = "rock",
+        ["pt-BR"] = "rock",
+        ["es"] = "rock",
+        ["ru"] = "—?–æ–∫",
+        ["zh-CN"] = "Ê??Êª?",
+        ["id"] = "rock",
+        ["fil"] = "rock",
+        ["vi"] = "rock",
+        ["fr"] = "rock",
+        ["de"] = "rock",
+        ["ja"] = "„?≠„??„?Ø",
+        ["ko"] = "Î°ù",
+        ["tr"] = "rock",
+        ["ar"] = "ÿ±Ÿ?Ÿ?"
+    },
+
+    ["creepy/weirdcore"] = {
+        ["en"] = "creepy/weirdcore",
+        ["pt-BR"] = "assustador/weirdcore",
+        ["es"] = "espeluznante/weirdcore",
+        ["ru"] = "–∂—?—?–∫–æ/weirdcore",
+        ["zh-CN"] = "ËØ°Âº?/weirdcore",
+        ["id"] = "menyeramkan/weirdcore",
+        ["fil"] = "nakakatakot/weirdcore",
+        ["vi"] = "r√πng r·ª£n/weirdcore",
+        ["fr"] = "effrayant/weirdcore",
+        ["de"] = "gruselig/weirdcore",
+        ["ja"] = "‰∏çÊ∞?Â?≥/weirdcore",
+        ["ko"] = "Ï?¨Î?©Ì??/weirdcore",
+        ["tr"] = "√ºrk√ºt√ºc√º/weirdcore",
+        ["ar"] = "Ÿ?ÿÆŸ?ŸÅ/weirdcore"
+    },
+
+    ["unsupported executor"] = {
+        ["en"] = "Your executor may not support this feature.",
+        ["pt-BR"] = "Seu executor pode n√£o suportar este recurso.",
+        ["es"] = "Tu executor puede que no sea compatible con esta funci√≥n.",
+        ["ru"] = "–?–∞—? –∏—Å–ø–æ–ª–Ω–∏—?–µ–ª—? –º–æ–∂–µ—? –Ω–µ –ø–æ–¥–¥–µ—?–∂–∏–≤–∞—?—? —ç—?—? —?—?–Ω–∫—?–∏—?.",
+        ["zh-CN"] = "Ê?®Á??Ê?ßË°?Â?®ÂèØË?Ω‰∏çÊ?ØÊ?ÅÊ≠§Â??Ë?Ω„??",
+        ["id"] = "Eksekutormu mungkin tidak mendukung fitur ini.",
+        ["fil"] = "Maaaring hindi suportado ng iyong executor ang tampok na ito.",
+        ["vi"] = "Tr√¨nh th·ª±c thi c·ªßa b·∫°n c√≥ th·ª? kh√¥ng h·ª? tr·ª£ t√≠nh nƒ?ng n√†y.",
+        ["fr"] = "Votre ex√©cuteur peut ne pas prendre en charge cette fonctionnalit√©.",
+        ["de"] = "Dein Executor unterst√ºtzt diese Funktion m√∂glicherweise nicht.",
+        ["ja"] = "„Å?„Å™„Å?„ÅÆ„?®„?∞„?º„?≠„?•„?º„?ø„ÅØ„Å?„ÅÆÊ©?Ë?Ω„??„?µ„?ù„?º„??„Å?„Å¶„Å?„Å™„Å?ÂèØË?ΩÊ?ß„Å?„Å?„??„Åæ„Å?„??",
+        ["ko"] = "Ï?¨Ï?© Ï§?Ïù∏ Ï?§Ì??Í∏∞Í∞? Ïù¥ Í∏∞Î?•Ïù? Ïß?Ï?êÌ??Ïß? Ï??Ïù? Ï?? Ï??Ï?µÎ??Î?§.",
+        ["tr"] = "Executor‚??ƒ±nƒ±z bu √∂zelliƒ?i desteklemeyebilir.",
+        ["ar"] = "Ÿ?ÿØ Ÿ?ÿß Ÿ?ÿØÿπŸ? ÿ®ÿ±Ÿ?ÿßŸ?ÿ¨ ÿßŸ?ÿ™Ÿ?ŸÅŸ?ÿ∞ ÿßŸ?ÿÆÿßÿµ ÿ®Ÿ? Ÿ?ÿ∞Ÿ? ÿßŸ?Ÿ?Ÿ?ÿ≤ÿ©."
+    },
+
+    ["custom songs"] = {
+        ["en"] = "custom songs",
+        ["pt-BR"] = "m√∫sicas custom",
+        ["es"] = "canciones custom",
+        ["ru"] = "–∫–∞—Å—?–æ–º –ø–µ—Å–Ω–∏",
+        ["zh-CN"] = "Ë?™ÂÆ?‰π?Ê≠?Ê?≤",
+        ["id"] = "lagu kustom",
+        ["fil"] = "custom na kanta",
+        ["vi"] = "b√†i h√°t t√πy ch·ª?nh",
+        ["fr"] = "sons custom",
+        ["de"] = "custom songs",
+        ["ja"] = "„?´„?π„?ø„?†Ê?≤",
+        ["ko"] = "Ï?¨Ï?©Ï?ê Í≥°",
+        ["tr"] = "√∂zel ≈?arkƒ±lar",
+        ["ar"] = "ÿ£ÿ∫ÿßŸ?Ÿ? Ÿ?ÿÆÿµÿµÿ©"
+    },
+    
+    ["favourites"] = {
+        ["en"] = "favourites",
+        ["pt-BR"] = "favoritas",
+        ["es"] = "favoritas",
+        ["ru"] = "–∏–∑–±—?–∞–Ω–Ω–æ–µ",
+        ["zh-CN"] = "Ê?∂Ë?è",
+        ["id"] = "favorit",
+        ["fil"] = "paborito",
+        ["vi"] = "y√™u th√≠ch",
+        ["fr"] = "favoris",
+        ["de"] = "favoriten",
+        ["ja"] = "„Å?Ê∞?„Å´Â?•„??",
+        ["ko"] = "Ï¶êÍ≤®Ï∞æÍ∏∞",
+        ["tr"] = "favoriler",
+        ["ar"] = "ÿßŸ?Ÿ?ŸÅÿ∂Ÿ?ÿ©"
+    },
+
+    ["other"] = {
+        ["en"] = "other",
+        ["pt-BR"] = "outros",
+        ["es"] = "otros",
+        ["ru"] = "–¥—?—?–≥–æ–µ",
+        ["zh-CN"] = "Â?∂‰ª?",
+        ["id"] = "lainnya",
+        ["fil"] = "iba pa",
+        ["vi"] = "kh√°c",
+        ["fr"] = "autres",
+        ["de"] = "andere",
+        ["ja"] = "„Åù„ÅÆ‰ª?",
+        ["ko"] = "Í∏∞Ì??",
+        ["tr"] = "diƒ?er",
+        ["ar"] = "ÿ£ÿÆÿ±Ÿ?"
+    },
+
+    ["all"] = {
+        ["en"] = "all",
+        ["pt-BR"] = "todas",
+        ["es"] = "todas",
+        ["ru"] = "–≤—Å–µ",
+        ["zh-CN"] = "Â?®È?®",
+        ["id"] = "semua",
+        ["fil"] = "lahat",
+        ["vi"] = "t·∫•t c·∫£",
+        ["fr"] = "toutes",
+        ["de"] = "alle",
+        ["ja"] = "„Å?„Åπ„Å¶",
+        ["ko"] = "Ï†?Ï≤¥",
+        ["tr"] = "t√ºm√º",
+        ["ar"] = "ÿßŸ?Ÿ?Ÿ?"
+    },
+
+    ["songplayingerror"] = {
+        ["en"] = "A song is already playing.",
+        ["pt-BR"] = "Uma m√∫sica j√° est√° sendo reproduzida.",
+        ["es"] = "Ya se est√° reproduciendo una canci√≥n.",
+        ["ru"] = "–?–µ—Å–Ω—è —?–∂–µ –ø—?–æ–∏–≥—?—?–≤–∞–µ—?—Å—è.",
+        ["zh-CN"] = "‰∏?È¶?Ê≠?Ê?≤Ê≠£Â?®Ê?≠Ê?æ„??",
+        ["id"] = "Sebuah lagu sedang diputar.",
+        ["fil"] = "May kasalukuyang tumutugtog na kanta.",
+        ["vi"] = "M·ª?t b√†i h√°t ƒ?ang ph√°t.",
+        ["fr"] = "Une chanson est d√©j√† en cours de lecture.",
+        ["de"] = "Ein Lied wird bereits abgespielt.",
+        ["ja"] = "Ê?≤„ÅØ„Å?„Åß„Å´Â?çÁ??‰∏≠„Åß„Å?„??",
+        ["ko"] = "Ïù¥ÎØ∏ Î?∏Î??Í∞? Ï?¨Ï?ù Ï§?Ï??Î??Î?§.",
+        ["tr"] = "Zaten bir ≈?arkƒ± √ßalƒ±yor.",
+        ["ar"] = "Ÿ?Ÿ?ÿßŸ? ÿ£ÿ∫Ÿ?Ÿ?ÿ© ÿ™ÿπŸ?Ÿ? ÿ®ÿßŸ?ŸÅÿπŸ?."
+    },
+
+    ["stoploopingsongs"] = {
+        ["en"] = "STOP LOOPING SONGS",
+        ["pt-BR"] = "PARAR LOOP M√?SICAS",
+        ["es"] = "DETENER LOOP",
+        ["ru"] = "–?–°–¢–ê–ù–?–?–?–¢–¨ –?–?–?–¢–?–†",
+        ["zh-CN"] = "ÂÅ?Ê≠¢Âæ™Á?Ø",
+        ["id"] = "BERHENTI LOOP LAGU",
+        ["fil"] = "ITIGIL LOOP",
+        ["vi"] = "D·ª™NG L·∫∂P B√?I H√ÅT",
+        ["fr"] = "ARR√?TER LE LOOP",
+        ["de"] = "LOOP LIEDER STOPPEN",
+        ["ja"] = "„?´„?º„??ÂÅ?Ê≠¢",
+        ["ko"] = "Î?∏Î?? Î∞?Î≥µ Ï§?Ïß?",
+        ["tr"] = "LOOP ≈?ARKI DURDUR",
+        ["ar"] = "ÿ•Ÿ?Ÿ?ÿßŸÅ ÿßŸ?ÿ™Ÿ?ÿ±ÿßÿ±"
+    },    
+
+    ["midispoofon"] = {
+        ["en"] = "MIDI spoofing is turned on. Click the question mark for more info.",
+        ["pt-BR"] = "A falsifica√ß√£o de MIDI est√° ativada. Clique no ponto de interroga√ß√£o para mais informa√ß√µes.",
+        ["es"] = "La falsificaci√≥n de MIDI est√° activada. Haz clic en el signo de interrogaci√≥n para m√°s informaci√≥n.",
+        ["ru"] = "–?–æ–¥–¥–µ–ª–∫–∞ MIDI –≤–∫–ª—?—?–µ–Ω–∞. –ù–∞–∂–º–∏—?–µ –Ω–∞ –∑–Ω–∞–∫ –≤–æ–ø—?–æ—Å–∞ –¥–ª—è –ø–æ–ª—?—?–µ–Ω–∏—è –¥–æ–ø–æ–ª–Ω–∏—?–µ–ª—?–Ω–æ–π –∏–Ω—?–æ—?–º–∞—?–∏–∏.",
+        ["zh-CN"] = "MIDI ‰º™Ë£?Â∑≤Âº?ÂêØ„??Á?πÂ?ªÈ?ÆÂè∑Ë?∑Âè?Ê?¥Â§?‰ø°ÊÅØ„??",
+        ["id"] = "Spoofing MIDI telah diaktifkan. Klik tanda tanya untuk info lebih lanjut.",
+        ["fil"] = "Ang pag-peke ng MIDI ay naka-on. I-click ang tandang pananong para sa karagdagang impormasyon.",
+        ["vi"] = "Ch·∫ø ƒ?·ª? gi·∫£ l·∫≠p MIDI ƒ?√£ b·∫≠t. Nh·∫•n d·∫•u h·ªèi ƒ?·ª? bi·∫øt th√™m th√¥ng tin.",
+        ["fr"] = "La simulation MIDI est activ√©e. Cliquez sur le point d'interrogation pour plus d'informations.",
+        ["de"] = "MIDI-Spoofing ist aktiviert. Klicken Sie auf das Fragezeichen f√ºr weitere Informationen.",
+        ["ja"] = "MIDI„ÅÆÂÅΩË£?„Å?„?™„?≥„Å´„Å™„Å£„Å¶„Å?„Åæ„Å?„??Ë©≥Á¥∞„ÅØÔº?„??„?º„?Ø„??„?Ø„?™„??„?Ø„Å?„Å¶„Åè„Å†„Å?„Å?„??",
+        ["ko"] = "MIDI Ï?§Ì?∏Ì??Ïù¥ Ïº?Ï†∏ Ï??Ï?µÎ??Î?§. Ï?êÏ?∏Ì?? Î?¥Ï?©Ïù? Î¨ºÏù?Ì??Î•º ÌÅ¥Î¶≠Ì??Ï?∏Ï??.",
+        ["tr"] = "MIDI sahteleme a√ßƒ±k. Daha fazla bilgi i√ßin soru i≈?aretine tƒ±klayƒ±n.",
+        ["ar"] = "ÿ™Ÿ? ÿ™ŸÅÿπŸ?Ÿ? ÿ™ÿ≤Ÿ?Ÿ?ŸÅ MIDI. ÿßÿ∂ÿ∫ÿ∑ ÿπŸ?Ÿ? ÿπŸ?ÿßŸ?ÿ© ÿßŸ?ÿ≥ÿ§ÿßŸ? Ÿ?Ÿ?ÿ≤Ÿ?ÿØ Ÿ?Ÿ? ÿßŸ?Ÿ?ÿπŸ?Ÿ?Ÿ?ÿßÿ™."
+    },
+
+    ["midispoofoff"] = {
+        ["en"] = "MIDI spoofing is turned off.",
+        ["pt-BR"] = "A falsifica√ß√£o de MIDI est√° desativada.",
+        ["es"] = "La falsificaci√≥n de MIDI est√° desactivada.",
+        ["ru"] = "–?–æ–¥–¥–µ–ª–∫–∞ MIDI –≤—?–∫–ª—?—?–µ–Ω–∞.",
+        ["zh-CN"] = "MIDI ‰º™Ë£?Â∑≤Â?≥È?≠„??",
+        ["id"] = "Spoofing MIDI telah dimatikan.",
+        ["fil"] = "Ang pag-peke ng MIDI ay naka-off.",
+        ["vi"] = "Ch·∫ø ƒ?·ª? gi·∫£ l·∫≠p MIDI ƒ?√£ t·∫Øt.",
+        ["fr"] = "La simulation MIDI est d√©sactiv√©e.",
+        ["de"] = "MIDI-Spoofing ist deaktiviert.",
+        ["ja"] = "MIDI„ÅÆÂÅΩË£?„ÅØ„?™„??„Å´„Å™„Å£„Å¶„Å?„Åæ„Å?„??",
+        ["ko"] = "MIDI Ï?§Ì?∏Ì??Ïù¥ Í∫ºÏ†∏ Ï??Ï?µÎ??Î?§.",
+        ["tr"] = "MIDI sahteleme kapalƒ±.",
+        ["ar"] = "ÿ™Ÿ? ÿ•Ÿ?Ÿ?ÿßŸÅ ÿ™ÿ≤Ÿ?Ÿ?ŸÅ MIDI."
+    },
+
+    ["beganplayingnotif"] = {
+        ["en"] = "Began playing song.",
+        ["pt-BR"] = "Come√ßou a tocar a m√∫sica.",
+        ["es"] = "Se empez√≥ a reproducir la canci√≥n.",
+        ["ru"] = "–ù–∞—?–∞–ª–æ—Å—? –≤–æ—Å–ø—?–æ–∏–∑–≤–µ–¥–µ–Ω–∏–µ –ø–µ—Å–Ω–∏.",
+        ["zh-CN"] = "Âº?Âß?Ê?≠Ê?æÊ≠?Ê?≤„??",
+        ["id"] = "Mulai memutar lagu.",
+        ["fil"] = "Nagsimula na ang pagtugtog ng kanta.",
+        ["vi"] = "ƒê√£ b·∫Øt ƒ?·∫ßu ph√°t b√†i h√°t.",
+        ["fr"] = "Lecture de la chanson commenc√©e.",
+        ["de"] = "Das Lied wird abgespielt.",
+        ["ja"] = "Ê?≤„ÅÆÂ?çÁ??„??È??Âß?„Å?„Åæ„Å?„Å?„??",
+        ["ko"] = "Î?∏Î?? Ï?¨Ï?ùÏù? Ï??Ï??Ì??Ï?µÎ??Î?§.",
+        ["tr"] = "≈?arkƒ± √ßalmaya ba≈?ladƒ±.",
+        ["ar"] = "ÿ®ÿØÿ£ ÿ™ÿ¥ÿ∫Ÿ?Ÿ? ÿßŸ?ÿ£ÿ∫Ÿ?Ÿ?ÿ©."
+    },
+
+    ["brokensongscript"] = {
+        ["en"] = "Your song script is broken. If confused, contact support in the Discord.",
+        ["pt-BR"] = "Seu script de m√∫sica est√° quebrado. Se estiver confuso, entre em contato com o suporte no Discord.",
+        ["es"] = "Tu script de canci√≥n est√° roto. Si tienes dudas, contacta al soporte en Discord.",
+        ["ru"] = "–?–∞—? —Å–∫—?–∏–ø—? –ø–µ—Å–Ω–∏ –ø–æ–≤—?–µ–∂–¥—?–Ω. –?—Å–ª–∏ —?—?–æ-—?–æ –Ω–µ–ø–æ–Ω—è—?–Ω–æ, —Å–≤—è–∂–∏—?–µ—Å—? —Å –ø–æ–¥–¥–µ—?–∂–∫–æ–π –≤ Discord.",
+        ["zh-CN"] = "‰Ω†Á??Ê≠?Ê?≤Ë??Ê?¨Â?∫Á?∞È?ÆÈ¢?„??Â¶?Ê??Á??È?ÆÔº?ËØ∑Â?® Discord ËÅ?Á≥ªÂÆ¢Ê?ç„??",
+        ["id"] = "Script lagumu rusak. Jika bingung, hubungi dukungan di Discord.",
+        ["fil"] = "Sira ang iyong song script. Kung nalilito, makipag-ugnayan sa suporta sa Discord.",
+        ["vi"] = "K·ª?ch b·∫£n b√†i h√°t c·ªßa b·∫°n b·ª? l·ª?i. N·∫øu b·ª?i r·ª?i, li√™n h·ª? h·ª? tr·ª£ tr√™n Discord.",
+        ["fr"] = "Votre script de chanson est cass√©. Si vous √™tes perdu, contactez le support sur Discord.",
+        ["de"] = "Dein Song-Skript ist fehlerhaft. Bei Fragen wende dich an den Support auf Discord.",
+        ["ja"] = "„Å?„Å™„Å?„ÅÆÊ?≤„ÅÆ„?π„?Ø„?™„??„??„Å?Â£?„??„Å¶„Å?„Åæ„Å?„??„?è„Å?„??„Å™„Å?Â†¥Âê?„ÅØ„?ÅDiscord„ÅÆ„?µ„?ù„?º„??„Å´È?£Áµ°„Å?„Å¶„Åè„Å†„Å?„Å?„??",
+        ["ko"] = "Î?∏Î?? Ï?§ÌÅ¨Î¶ΩÌ?∏Í∞? Ï?êÏ?ÅÎê?Ï??Ï?µÎ??Î?§. Ì?ºÎ??Ï?§Î?¨Ï?¥ Í≤ΩÏ?∞ Discord Ïß?Ï?êÌ??Ï?ê Î¨∏Ïù?Ì??Ï?∏Ï??.",
+        ["tr"] = "≈?arkƒ± skriptiniz bozuk. Eƒ?er kafanƒ±z karƒ±≈?tƒ±ysa, Discord'daki destekle ileti≈?ime ge√ßin.",
+        ["ar"] = "ÿ≥Ÿ?ÿ±Ÿ?ÿ®ÿ™ ÿßŸ?ÿ£ÿ∫Ÿ?Ÿ?ÿ© ÿßŸ?ÿÆÿßÿµ ÿ®Ÿ? Ÿ?ÿπÿ∑Ÿ?Ÿ?. ÿ•ÿ∞ÿß Ÿ?Ÿ?ÿ™ Ÿ?ÿ≠ÿ™ÿßÿ±Ÿ?ÿßÿ? ÿ™Ÿ?ÿßÿµŸ? Ÿ?ÿπ ÿßŸ?ÿØÿπŸ? ŸÅŸ? Discord."
+    },
+
+    ["doubleclickdelete"] = {
+        ["en"] = "Double-click to delete the song.",
+        ["pt-BR"] = "Clique duas vezes para excluir a m√∫sica.",
+        ["es"] = "Haz doble clic para eliminar la canci√≥n.",
+        ["ru"] = "–?–≤–∞–∂–¥—? —?–µ–ª–∫–Ω–∏—?–µ, —?—?–æ–±—? —?–¥–∞–ª–∏—?—? –ø–µ—Å–Ω—?.",
+        ["zh-CN"] = "Âè?Â?ª‰ª•Â?†È?§Ê≠?Ê?≤„??",
+        ["id"] = "Klik dua kali untuk menghapus lagu.",
+        ["fil"] = "I-double click para burahin ang kanta.",
+        ["vi"] = "Nh·∫•p ƒ?√¥i ƒ?·ª? x√≥a b√†i h√°t.",
+        ["fr"] = "Double-cliquez pour supprimer la chanson.",
+        ["de"] = "Doppelklicken, um das Lied zu l√∂schen.",
+        ["ja"] = "Ê?≤„??Â??È?§„Å?„??„Å´„ÅØ„??„??„?´„?Ø„?™„??„?Ø„Å?„Å¶„Åè„Å†„Å?„Å?„??",
+        ["ko"] = "Î?∏Î??Î•º Ï?≠Ï†?Ì??Î†§Î©¥ Îç?Î∏? ÌÅ¥Î¶≠Ì??Ï?∏Ï??.",
+        ["tr"] = "≈?arkƒ±yƒ± silmek i√ßin √ßift tƒ±klayƒ±n.",
+        ["ar"] = "ÿßŸ?Ÿ?ÿ± Ÿ?Ÿ?ÿ±Ÿ?ÿß Ÿ?ÿ≤ÿØŸ?ÿ¨Ÿ?ÿß Ÿ?ÿ≠ÿ∞ŸÅ ÿßŸ?ÿ£ÿ∫Ÿ?Ÿ?ÿ©."
+    },
+
+    ["songdeleted"] = {
+        ["en"] = "Your song has been deleted.",
+        ["pt-BR"] = "Sua m√∫sica foi exclu√≠da.",
+        ["es"] = "Tu canci√≥n ha sido eliminada.",
+        ["ru"] = "–?–∞—?–∞ –ø–µ—Å–Ω—è –±—?–ª–∞ —?–¥–∞–ª–µ–Ω–∞.",
+        ["zh-CN"] = "‰Ω†Á??Ê≠?Ê?≤Â∑≤Ë¢´Â?†È?§„??",
+        ["id"] = "Lagumu telah dihapus.",
+        ["fil"] = "Ang iyong kanta ay natanggal na.",
+        ["vi"] = "B√†i h√°t c·ªßa b·∫°n ƒ?√£ b·ª? x√≥a.",
+        ["fr"] = "Votre chanson a √©t√© supprim√©e.",
+        ["de"] = "Dein Lied wurde gel√∂scht.",
+        ["ja"] = "„Å?„Å™„Å?„ÅÆÊ?≤„ÅØÂ??È?§„Å?„??„Åæ„Å?„Å?„??",
+        ["ko"] = "Î?∏Î??Í∞? Ï?≠Ï†?Îê?Ï??Ï?µÎ??Î?§.",
+        ["tr"] = "≈?arkƒ±nƒ±z silindi.",
+        ["ar"] = "ÿ™Ÿ? ÿ≠ÿ∞ŸÅ ÿ£ÿ∫Ÿ?Ÿ?ÿ™Ÿ?."
+    },
+
+    ["spoof midi title"] = {
+        ["en"] = "spoof midi: what is it?",
+        ["pt-BR"] = "falsificar midi: o que √©?",
+        ["es"] = "falsificar midi: ¬øqu√© es?",
+        ["ru"] = "–ø–æ–¥–¥–µ–ª–∞—?—? midi: —?—?–æ —ç—?–æ?",
+        ["zh-CN"] = "‰º™Ë£? midiÔº?Ëø?Ê?Ø‰ª?‰π?Ôº?",
+        ["id"] = "palsukan midi: apa itu?",
+        ["fil"] = "peke ang midi: ano ito?",
+        ["vi"] = "gi·∫£ midi: ƒ?√≥ l√† g√¨?",
+        ["fr"] = "simuler midi : qu'est-ce que c'est ?",
+        ["de"] = "midi vort√§uschen: was ist das?",
+        ["ja"] = "midi„??ÂÅΩË£?Ôº?„Åù„??„ÅØ‰Ω?Ôº?",
+        ["ko"] = "midi Ï?§Ì?∏Ì??: Ïù¥Í≤? Î≠êÏ?º?",
+        ["tr"] = "midi sahteleme: bu nedir?",
+        ["ar"] = "ÿ™ÿ≤Ÿ?Ÿ?ŸÅ midi: Ÿ?ÿß Ÿ?Ÿ?ÿ?"
+    },
+    
+    ["spoof midi info"] = {
+        ["en"] = "This option is showing because you're in the game 'piano rooms'. When 'spoof midi' is ON, talentless tells the game that all your inputs come from a real MIDI keyboard, not QWERTY! This makes autoplay more believable, since people will think you're playing a real piano. Just turn it on and play any song!",
+        ["pt-BR"] = "Esta op√ß√£o aparece porque voc√™ est√° no jogo 'piano rooms'. Quando 'falsificar midi' est√° LIGADO, talentless diz ao jogo que seus inputs v√™m de um teclado MIDI real, n√£o de um QWERTY! Isso faz o autoplay parecer mais real. Basta ativar e tocar qualquer m√∫sica!",
+        ["es"] = "Esta opci√≥n aparece porque est√°s en el juego 'piano rooms'. Cuando 'falsificar midi' est√° ACTIVADO, talentless le dice al juego que tus entradas vienen de un teclado MIDI real, no de QWERTY. Esto hace que el autoplay parezca m√°s real. ¬°Solo act√≠valo y toca cualquier canci√≥n!",
+        ["ru"] = "–≠—?–∞ –æ–ø—?–∏—è –ø–æ—è–≤–∏–ª–∞—Å—?, –ø–æ—?–æ–º—? —?—?–æ –≤—? –≤ –∏–≥—?–µ 'piano rooms'. –?–æ–≥–¥–∞ '–ø–æ–¥–¥–µ–ª–∞—?—? midi' –≤–∫–ª—?—?—?–Ω, talentless —Å–æ–æ–±—?–∞–µ—? –∏–≥—?–µ, —?—?–æ –≤—Å–µ –≤–∞—?–∏ –Ω–∞–∂–∞—?–∏—è –∏–¥—?—? —Å —?–µ–∞–ª—?–Ω–æ–π MIDI-–∫–ª–∞–≤–∏–∞—?—?—?—?, –∞ –Ω–µ QWERTY! –ê–≤—?–æ–≤–æ—Å–ø—?–æ–∏–∑–≤–µ–¥–µ–Ω–∏–µ –≤—?–≥–ª—è–¥–∏—? —?–±–µ–¥–∏—?–µ–ª—?–Ω–µ–µ ‚?? –ª—?–¥–∏ –ø–æ–¥—?–º–∞—?—?, —?—?–æ –≤—? –∏–≥—?–∞–µ—?–µ –Ω–∞ –Ω–∞—Å—?–æ—è—?–µ–º –ø–∏–∞–Ω–∏–Ω–æ. –?—?–æ—Å—?–æ –≤–∫–ª—?—?–∏—?–µ –∏ –∏–≥—?–∞–π—?–µ –ª—?–±—?—? –ø–µ—Å–Ω—?!",
+        ["zh-CN"] = "Ê≠§È??È°πÂ?∫Á?∞Ê?ØÂ?†‰∏∫‰Ω†Â?®Ê∏∏Ê?è‚??piano rooms‚?ù‰∏≠„??ÂΩ?‚??‰º™Ë£? midi‚?ùÂº?ÂêØÊ?∂Ôº?talentless ‰º?Â??ËØ?Ê∏∏Ê?è‰Ω†Á??Ëæ?Â?•Êù•Ë?™Á??ÂÆ?Á?? MIDI È?ÆÁ??Ôº?Ë??‰∏çÊ?Ø QWERTYÔºÅËø?Ê†∑Ë?™Â?®Êº?Â•èÊ?¥È?ºÁ??Ôº?Â?´‰∫∫‰º?‰ª•‰∏∫‰Ω†Â?®ÂºπÈ?¢Áê¥„??Âè™È??Âº?ÂêØÁ?∂Âê?ÂºπÂ•è‰ªªÊ?èÊ≠?Ê?≤ÔºÅ",
+        ["id"] = "Opsi ini muncul karena kamu sedang di game 'piano rooms'. Saat 'palsukan midi' AKTIF, talentless memberi tahu game bahwa inputmu berasal dari keyboard MIDI asli, bukan QWERTY! Ini membuat autoplay lebih meyakinkan. Cukup aktifkan dan mainkan lagu apa pun!",
+        ["fil"] = "Lalabas ang opsyong ito dahil nasa laro kang 'piano rooms'. Kapag naka-ON ang 'peke ang midi', sasabihin ng talentless sa laro na galing sa totoong MIDI keyboard ang input mo, hindi QWERTY! Mas kapani-paniwala tuloy ang autoplay. I-on lang at tumugtog ng kahit anong kanta!",
+        ["vi"] = "T√πy ch·ªçn n√†y xu·∫•t hi·ª?n v√¨ b·∫°n ƒ?ang ·ª? tr√≤ ch∆°i 'piano rooms'. Khi 'gi·∫£ midi' B·∫¨T, talentless s·∫Ω b√°o cho game r·∫±ng c√°c thao t√°c c·ªßa b·∫°n ƒ?·∫øn t·ª´ b√†n ph√≠m MIDI th·∫≠t, kh√¥ng ph·∫£i QWERTY! ƒêi·ªÅu n√†y l√†m autoplay thuy·∫øt ph·ª•c h∆°n. Ch·ª? c·∫ßn b·∫≠t l√™n v√† ch∆°i b·∫•t k·ª≥ b√†i n√†o!",
+        ["fr"] = "Cette option appara√Æt car vous √™tes dans le jeu 'piano rooms'. Quand 'simuler midi' est ACTIV√?, talentless fait croire au jeu que vos entr√©es viennent d‚??un vrai clavier MIDI, pas d‚??un QWERTY ! L‚??autoplay para√Æt ainsi plus cr√©dible. Activez-le et jouez n‚??importe quelle chanson !",
+        ["de"] = "Diese Option erscheint, weil du im Spiel 'piano rooms' bist. Wenn 'midi vort√§uschen' AKTIV ist, sagt talentless dem Spiel, dass deine Eingaben von einem echten MIDI-Keyboard kommen, nicht von QWERTY! Dadurch wirkt Autoplay glaubw√ºrdiger. Einfach einschalten und ein Lied spielen!",
+        ["ja"] = "„Å?„ÅÆ„?™„??„?∑„?ß„?≥„ÅØ„?≤„?º„?†„??piano rooms„?ç„Å´„Å?„??„Å?„?ÅË°®Á§∫„Å?„??„Å¶„Å?„Åæ„Å?„??„??midi„??ÂÅΩË£?„?ç„??„?™„?≥„Å´„Å?„??„Å®„?Åtalentless „ÅØ„?≤„?º„?†„Å´„Å?„Åπ„Å¶„ÅÆÂ?•Â??„Å?QWERTY„Åß„ÅØ„Å™„ÅèÊ?¨Á?©„ÅÆMIDI„?≠„?º„??„?º„??„Å?„??Êù•„Å¶„Å?„??„Å®‰ºù„Å?„Åæ„Å?„??„Å?„??„ÅßË?™Â??Êº?Â•è„Å?„??„??Ê?¨Á?©„??„Å?„ÅèË¶?„Å?„?Å‰∫∫„??„ÅØÊ?¨ÂΩ?„Å´„??„?¢„??„??Âºæ„Å?„Å¶„Å?„??„Å®Ê?ù„Å?„Åæ„Å?„??„?™„?≥„Å´„Å?„Å¶Ê?≤„??Âºæ„Åè„Å†„Å?ÔºÅ",
+        ["ko"] = "Ïù¥ Ï?µÏ??Ïù? 'piano rooms' Í≤?Ï??Ï?ê Ï??Í∏∞ Î??Î¨∏Ï?ê Ì??Ï??Îê©Î??Î?§. 'midi Ï?§Ì?∏Ì??'Ïù? Ïº?Î©¥, talentlessÍ∞? Í≤?Ï??Ï?ê Î?πÏ?†Ïù? Ï??Î†•Ïù¥ QWERTYÍ∞? Ï??Î?? Ï?§Ï†? MIDI Ì?§Î≥¥Î??Ï?êÏ?? Ï?® Í≤?Ï≤?Î?º Ï??Î†§Ï§çÎ??Î?§! Ïù¥Î†?Í≤? Ì??Î©¥ Ï?êÎè? Ï?∞Ï£ºÍ∞? Ì?®Ï?¨ Í∑∏Î?¥Î?ØÌ?¥Ïß?Î??Î?§. Í∑∏Î?• Ïº?Í≥† Ï??Î¨¥ Î?∏Î??Î?? Ï?∞Ï£ºÌ?¥ Î≥¥Ï?∏Ï??!",
+        ["tr"] = "Bu se√ßenek 'piano rooms' oyununda olduƒ?un i√ßin g√∂r√ºn√ºyor. 'midi sahteleme' A√?IK olduƒ?unda, talentless oyuna t√ºm giri≈?lerinin ger√ßek bir MIDI klavyeden geldiƒ?ini s√∂yler, QWERTY‚??den deƒ?il! Bu, otomatik √ßalmayƒ± daha inandƒ±rƒ±cƒ± yapar. Sadece a√ß ve herhangi bir ≈?arkƒ±yƒ± √ßal!",
+        ["ar"] = "Ÿ?ÿ∏Ÿ?ÿ± Ÿ?ÿ∞ÿß ÿßŸ?ÿÆŸ?ÿßÿ± Ÿ?ÿ£Ÿ?Ÿ? ŸÅŸ? Ÿ?ÿπÿ®ÿ© 'piano rooms'. ÿπŸ?ÿØ ÿ™ŸÅÿπŸ?Ÿ? 'ÿ™ÿ≤Ÿ?Ÿ?ŸÅ midi'ÿ? ÿ≥Ÿ?ÿÆÿ®ÿ± talentless ÿßŸ?Ÿ?ÿπÿ®ÿ© ÿ£Ÿ? ÿ¨Ÿ?Ÿ?ÿπ Ÿ?ÿØÿÆŸ?ÿßÿ™Ÿ? ÿ™ÿ£ÿ™Ÿ? Ÿ?Ÿ? Ÿ?Ÿ?ÿ≠ÿ© Ÿ?ŸÅÿßÿ™Ÿ?ÿ≠ MIDI ÿ≠Ÿ?Ÿ?Ÿ?Ÿ?ÿ©ÿ? Ÿ?Ÿ?Ÿ?ÿ≥ QWERTY! Ÿ?ÿ∞ÿß Ÿ?ÿ¨ÿπŸ? ÿßŸ?ÿ™ÿ¥ÿ∫Ÿ?Ÿ? ÿßŸ?ÿ™Ÿ?Ÿ?ÿßÿ¶Ÿ? ÿ£Ÿ?ÿ´ÿ± ÿ•Ÿ?Ÿ?ÿßÿπŸ?ÿß. ŸÅŸ?ÿ∑ Ÿ?Ÿ? ÿ®ÿ™ÿ¥ÿ∫Ÿ?Ÿ?Ÿ? Ÿ?ÿßÿπÿ≤ŸÅ ÿ£Ÿ? ÿ£ÿ∫Ÿ?Ÿ?ÿ©!"
+    },
+    
+    ["midi connect reminder"] = {
+        ["en"] = "Make sure to turn on midi connect!",
+        ["pt-BR"] = "N√£o esque√ßa de ativar o midi connect!",
+        ["es"] = "¬°Aseg√∫rate de activar midi connect!",
+        ["ru"] = "–?–±—è–∑–∞—?–µ–ª—?–Ω–æ –≤–∫–ª—?—?–∏—?–µ midi connect!",
+        ["zh-CN"] = "ËÆ∞Âæ?Âº?ÂêØ midi connectÔºÅ",
+        ["id"] = "Pastikan menyalakan midi connect!",
+        ["fil"] = "Siguraduhin na naka-on ang midi connect!",
+        ["vi"] = "Nh·ª? b·∫≠t midi connect!",
+        ["fr"] = "N‚??oubliez pas d‚??activer midi connect !",
+        ["de"] = "Stelle sicher, dass midi connect eingeschaltet ist!",
+        ["ja"] = "Âø?„Å? midi connect „??„?™„?≥„Å´„Å?„Å¶„Åè„Å†„Å?„Å?ÔºÅ",
+        ["ko"] = "midi connectÎ•º Íº≠ Ïº?Ï?∏Ï??!",
+        ["tr"] = "Midi connect'i a√ßmayƒ± unutma!",
+        ["ar"] = "ÿ™ÿ£Ÿ?ÿØ Ÿ?Ÿ? ÿ™ÿ¥ÿ∫Ÿ?Ÿ? midi connect!"
+    },
+
+    ["custom song instructions"] = {
+        ["en"] = "Convert a MIDI file into a song script using MIDI2LUA (bit.ly/midi2lua). Then, paste the full, unedited script here to add the song to your GUI in TALENTLESS!",
+        ["pt-BR"] = "Converta um arquivo MIDI em script usando MIDI2LUA (bit.ly/midi2lua). Depois, cole o script completo aqui para adicionar a m√∫sica no TALENTLESS!",
+        ["es"] = "Convierte un archivo MIDI en script con MIDI2LUA (bit.ly/midi2lua). Luego pega el script completo aqu√≠ para a√±adir la canci√≥n en TALENTLESS.",
+        ["ru"] = "–?—?–µ–æ–±—?–∞–∑—?–π—?–µ MIDI-—?–∞–π–ª –≤ —Å–∫—?–∏–ø—? —?–µ—?–µ–∑ MIDI2LUA (bit.ly/midi2lua). –?–∞—?–µ–º –≤—Å—?–∞–≤—?—?–µ –ø–æ–ª–Ω—?–π —Å–∫—?–∏–ø—? —Å—?–¥–∞, —?—?–æ–±—? –¥–æ–±–∞–≤–∏—?—? –ø–µ—Å–Ω—? –≤ TALENTLESS!",
+        ["zh-CN"] = "‰ΩøÁ?® MIDI2LUA (bit.ly/midi2lua) Â∞? MIDI Ê??‰ª∂ËΩ¨Êç¢‰∏∫Ë??Ê?¨„??Á?∂Âê?Â∞?ÂÆ?Ê?¥Ë??Ê?¨Á≤?Ë¥¥Â?∞Ëø?È??Ôº?‰ª•Ê∑ªÂ?†Ê≠?Ê?≤Â?∞ TALENTLESSÔºÅ",
+        ["id"] = "Ubah file MIDI jadi script dengan MIDI2LUA (bit.ly/midi2lua). Lalu tempel script lengkap di sini untuk menambah lagu ke TALENTLESS!",
+        ["fil"] = "I-convert ang MIDI file sa script gamit ang MIDI2LUA (bit.ly/midi2lua). Pagkatapos, i-paste ang buong script dito para maidagdag ang kanta sa TALENTLESS!",
+        ["vi"] = "Chuy·ª?n file MIDI th√†nh script b·∫±ng MIDI2LUA (bit.ly/midi2lua). Sau ƒ?√≥ d√°n script ƒ?·∫ßy ƒ?·ªß v√†o ƒ?√¢y ƒ?·ª? th√™m b√†i h√°t v√†o TALENTLESS!",
+        ["fr"] = "Convertissez un fichier MIDI en script avec MIDI2LUA (bit.ly/midi2lua). Puis collez le script complet ici pour ajouter la chanson √† TALENTLESS !",
+        ["de"] = "Wandle eine MIDI-Datei in ein Script mit MIDI2LUA (bit.ly/midi2lua) um. Danach f√ºge das vollst√§ndige Script hier ein, um das Lied in TALENTLESS hinzuzuf√ºgen!",
+        ["ja"] = "MIDI„??„?°„?§„?´„??MIDI2LUA (bit.ly/midi2lua)„Åß„?π„?Ø„?™„??„??„Å´Â§?Êè?„Å?„Åæ„Å?„??„Åù„ÅÆÂæ?„?ÅÂÆ?Â?®„Å™„?π„?Ø„?™„??„??„??„Å?„Å?„Å´Ë≤º„??‰ª?„Å?„Å¶TALENTLESS„Å´Ê?≤„??ËøΩÂ?†„Å?„Å¶„Åè„Å†„Å?„Å?ÔºÅ",
+        ["ko"] = "MIDI Ì??ÏùºÏù? MIDI2LUA (bit.ly/midi2lua)Î°? Î≥?Ì??Ì??Ï?∏Ï??. Í∑∏Î?∞ Î?§Ïù? Ï†?Ï≤¥ Ï?§ÌÅ¨Î¶ΩÌ?∏Î•º Ï?¨Í∏∞Ï?ê Î∂?Ï?¨ Î?£Ï?¥ TALENTLESSÏ?ê Î?∏Î??Î•º Ï∂?Í∞?Ì??Ï?∏Ï??!",
+        ["tr"] = "Bir MIDI dosyasƒ±nƒ± MIDI2LUA (bit.ly/midi2lua) ile script'e √ßevir. Sonra tam script'i buraya yapƒ±≈?tƒ±rarak ≈?arkƒ±yƒ± TALENTLESS'e ekle!",
+        ["ar"] = "ÿ≠Ÿ?Ÿ?Ÿ? Ÿ?Ÿ?ŸÅ MIDI ÿ•Ÿ?Ÿ? ÿ≥Ÿ?ÿ±ÿ®ÿ™ ÿ®ÿßÿ≥ÿ™ÿÆÿØÿßŸ? MIDI2LUA (bit.ly/midi2lua). ÿ´Ÿ? ÿßŸ?ÿµŸ? ÿßŸ?ÿ≥Ÿ?ÿ±ÿ®ÿ™ ÿßŸ?Ÿ?ÿßŸ?Ÿ? Ÿ?Ÿ?ÿß Ÿ?ÿ•ÿ∂ÿßŸÅÿ© ÿßŸ?ÿ£ÿ∫Ÿ?Ÿ?ÿ© ŸÅŸ? TALENTLESS!"
+    },
+
+    ["insert song script"] = {
+        ["en"] = "Insert your song script and the name of your song.",
+        ["pt-BR"] = "Insira o script e o nome da sua m√∫sica.",
+        ["es"] = "Inserta el script y el nombre de tu canci√≥n.",
+        ["ru"] = "–?—Å—?–∞–≤—?—?–µ —Å–∫—?–∏–ø—? –∏ –Ω–∞–∑–≤–∞–Ω–∏–µ –≤–∞—?–µ–π –ø–µ—Å–Ω–∏.",
+        ["zh-CN"] = "Ëæ?Â?•Ë??Ê?¨Â??Ê≠?Ê?≤ÂêçÁß∞„??",
+        ["id"] = "Masukkan script dan nama lagumu.",
+        ["fil"] = "Ilagay ang script at pangalan ng kanta mo.",
+        ["vi"] = "Nh·∫≠p script v√† t√™n b√†i h√°t c·ªßa b·∫°n.",
+        ["fr"] = "Ins√©rez le script et le nom de votre chanson.",
+        ["de"] = "F√ºge dein Script und den Liednamen ein.",
+        ["ja"] = "„?π„?Ø„?™„??„??„Å®Ê?≤Âêç„??Â?•Â??„Å?„Å¶„Åè„Å†„Å?„Å?„??",
+        ["ko"] = "Ï?§ÌÅ¨Î¶ΩÌ?∏Ï?? Î?∏Î?? Ïù¥Î¶?Ïù? Ï??Î†•Ì??Ï?∏Ï??.",
+        ["tr"] = "≈?arkƒ± scriptini ve adƒ±nƒ± gir.",
+        ["ar"] = "ÿ£ÿØÿÆŸ? ÿßŸ?ÿ≥Ÿ?ÿ±ÿ®ÿ™ Ÿ?ÿßÿ≥Ÿ? ÿ£ÿ∫Ÿ?Ÿ?ÿ™Ÿ?."
+    },
+
+    ["song name prompt"] = {
+        ["en"] = "What's the name of your song?",
+        ["pt-BR"] = "Qual o nome da sua m√∫sica?",
+        ["es"] = "¬øCu√°l es el nombre de tu canci√≥n?",
+        ["ru"] = "–?–∞–∫ –Ω–∞–∑—?–≤–∞–µ—?—Å—è –≤–∞—?–∞ –ø–µ—Å–Ω—è?",
+        ["zh-CN"] = "‰Ω†Á??Ê≠?Ê?≤Âè´‰ª?‰π?ÂêçÂ≠?Ôº?",
+        ["id"] = "Apa nama lagumu?",
+        ["fil"] = "Ano ang pangalan ng kanta mo?",
+        ["vi"] = "T√™n b√†i h√°t c·ªßa b·∫°n l√† g√¨?",
+        ["fr"] = "Quel est le nom de ta chanson ?",
+        ["de"] = "Wie hei√?t dein Lied?",
+        ["ja"] = "Ê?≤„ÅÆÂêçÂ?ç„ÅØ‰Ω?„Åß„Å?„Å?Ôº?",
+        ["ko"] = "Î?∏Î?? Ï†?Î™©Ïù? Î¨¥Ï??Ïù∏Í∞?Ï???",
+        ["tr"] = "≈?arkƒ±nƒ±n adƒ± ne?",
+        ["ar"] = "Ÿ?ÿß ÿßÿ≥Ÿ? ÿ£ÿ∫Ÿ?Ÿ?ÿ™Ÿ?ÿ?"
+    },
+
+    ["submit"] = {
+        ["en"] = "SUBMIT!",
+        ["pt-BR"] = "ENVIAR!",
+        ["es"] = "ENVIAR!",
+        ["ru"] = "–?–¢–?–†–ê–?–?–¢–¨!",
+        ["zh-CN"] = "Êèê‰∫§ÔºÅ",
+        ["id"] = "KIRIM!",
+        ["fil"] = "IPASA!",
+        ["vi"] = "G·ª¨I!",
+        ["fr"] = "ENVOYER !",
+        ["de"] = "SENDEN!",
+        ["ja"] = "È?Å‰ø°ÔºÅ",
+        ["ko"] = "Ï†?Ï∂?!",
+        ["tr"] = "G√?NDER!",
+        ["ar"] = "ÿ•Ÿêÿ±Ÿ?ÿ≥Ÿ?ÿßŸ?!"
+    },
+
+    ["songnameexists"] = {
+        ["en"] = "You already have a song with this name.",
+        ["pt-BR"] = "Voc√™ j√° tem uma m√∫sica com esse nome.",
+        ["es"] = "Ya tienes una canci√≥n con ese nombre.",
+        ["ru"] = "–£ –≤–∞—Å —?–∂–µ –µ—Å—?—? –ø–µ—Å–Ω—è —Å —?–∞–∫–∏–º –Ω–∞–∑–≤–∞–Ω–∏–µ–º.",
+        ["zh-CN"] = "‰Ω†Â∑≤ÁªèÊ??Âê?ÂêçÊ≠?Ê?≤„??",
+        ["id"] = "Kamu sudah punya lagu dengan nama ini.",
+        ["fil"] = "May kanta ka na sa pangalang ito.",
+        ["vi"] = "B·∫°n ƒ?√£ c√≥ b√†i h√°t v·ª?i t√™n n√†y.",
+        ["fr"] = "Vous avez d√©j√† une chanson avec ce nom.",
+        ["de"] = "Du hast bereits ein Lied mit diesem Namen.",
+        ["ja"] = "„Å?„ÅÆÂêçÂ?ç„ÅÆÊ?≤„ÅØÊ?¢„Å´„Å?„??„Åæ„Å?„??",
+        ["ko"] = "Ïù¥ÎØ∏ Í∞?Ïù? Ïù¥Î¶?Ïù? Î?∏Î??Í∞? Ï??Ï?µÎ??Î?§.",
+        ["tr"] = "Bu isimde bir ≈?arkƒ±nƒ±z zaten var.",
+        ["ar"] = "Ÿ?ÿØŸ?Ÿ? ÿ®ÿßŸ?ŸÅÿπŸ? ÿ£ÿ∫Ÿ?Ÿ?ÿ© ÿ®Ÿ?ÿ∞ÿß ÿßŸ?ÿßÿ≥Ÿ?."
+    },
+    
+    ["songadded"] = {
+        ["en"] = "You have added the song \"%s\".",
+        ["pt-BR"] = "Voc√™ adicionou a m√∫sica \"%s\".",
+        ["es"] = "Has a√±adido la canci√≥n \"%s\".",
+        ["ru"] = "–?—? –¥–æ–±–∞–≤–∏–ª–∏ –ø–µ—Å–Ω—? \"%s\".",
+        ["zh-CN"] = "‰Ω†Â∑≤Ê∑ªÂ?†Ê≠?Ê?≤„??%s„?ç„??",
+        ["id"] = "Kamu telah menambahkan lagu \"%s\".",
+        ["fil"] = "Nagdagdag ka ng kanta na \"%s\".",
+        ["vi"] = "B·∫°n ƒ?√£ th√™m b√†i h√°t \"%s\".",
+        ["fr"] = "Vous avez ajout√© la chanson \"%s\".",
+        ["de"] = "Du hast das Lied \"%s\" hinzugef√ºgt.",
+        ["ja"] = "Ê?≤„??%s„?ç„??ËøΩÂ?†„Å?„Åæ„Å?„Å?„??",
+        ["ko"] = "Î?∏Î?? \"%s\"Ïù?(Î•º) Ï∂?Í∞?Ì??Ï?µÎ??Î?§.",
+        ["tr"] = "≈?arkƒ± \"%s\" eklendi.",
+        ["ar"] = "Ÿ?Ÿ?ÿØ ÿ£ÿ∂ŸÅÿ™ ÿßŸ?ÿ£ÿ∫Ÿ?Ÿ?ÿ© \"%s\"."
+    },
+    
+    ["copy"] = {
+        ["en"] = "copy!",
+        ["pt-BR"] = "copiar!",
+        ["es"] = "copiar!",
+        ["ru"] = "–∫–æ–ø–∏—?–æ–≤–∞—?—?!",
+        ["zh-CN"] = "Â§çÂ?∂ÔºÅ",
+        ["id"] = "salin!",
+        ["fil"] = "kopya!",
+        ["vi"] = "sao ch√©p!",
+        ["fr"] = "copier !",
+        ["de"] = "kopieren!",
+        ["ja"] = "„?≥„??„?ºÔºÅ",
+        ["ko"] = "Î≥µÏ?¨!",
+        ["tr"] = "kopyala!",
+        ["ar"] = "Ÿ?ÿ≥ÿÆ!"
+    },
+    
+    ["help info"] = {
+        ["en"] = "Need help with TALENTLESS? Want to turn MIDI files into autoplay scripts, find tutorials, or get help from the Discord server? Click the button below to copy the link to my official website!",
+        ["pt-BR"] = "Precisa de ajuda com TALENTLESS? Quer transformar arquivos MIDI em scripts de autoplay, encontrar tutoriais ou obter ajuda no Discord? Clique no bot√£o abaixo para copiar o link do site oficial!",
+        ["es"] = "¬øNecesitas ayuda con TALENTLESS? ¬øQuieres convertir archivos MIDI en scripts de autoplay, encontrar tutoriales o recibir ayuda en Discord? Haz clic en el bot√≥n abajo para copiar el enlace a mi sitio oficial!",
+        ["ru"] = "–ù—?–∂–Ω–∞ –ø–æ–º–æ—?—? —Å TALENTLESS? –•–æ—?–∏—?–µ –∫–æ–Ω–≤–µ—?—?–∏—?–æ–≤–∞—?—? MIDI-—?–∞–π–ª—? –≤ —Å–∫—?–∏–ø—?—? –∞–≤—?–æ–ø–ª–µ—è, –Ω–∞–π—?–∏ —?—?–æ–∫–∏ –∏–ª–∏ –ø–æ–ª—?—?–∏—?—? –ø–æ–º–æ—?—? –≤ Discord? –ù–∞–∂–º–∏—?–µ –∫–Ω–æ–ø–∫—? –Ω–∏–∂–µ, —?—?–æ–±—? —Å–∫–æ–ø–∏—?–æ–≤–∞—?—? —Å—Å—?–ª–∫—? –Ω–∞ –æ—?–∏—?–∏–∞–ª—?–Ω—?–π —Å–∞–π—?!",
+        ["zh-CN"] = "È??Ë¶Å TALENTLESS Á??Â∏ÆÂ?©Âê?Ôº?Ê?≥Â∞? MIDI Ê??‰ª∂ËΩ¨Êç¢‰∏∫Ë?™Â?®Ê?≠Ê?æË??Ê?¨„?ÅÊ?•Ê?æÊ??Á®?Ê??Â?® Discord Ë?∑Âè?Â∏ÆÂ?©Ôº?Á?πÂ?ª‰∏?Ê?πÊ??È?ÆÂ§çÂ?∂Ê??Á??ÂÆ?Ê?πÁΩ?Á´?È?æÊ?•ÔºÅ",
+        ["id"] = "Perlu bantuan dengan TALENTLESS? Ingin mengubah file MIDI menjadi script autoplay, mencari tutorial, atau mendapatkan bantuan dari Discord? Klik tombol di bawah untuk menyalin link situs resmi saya!",
+        ["fil"] = "Kailangan mo ba ng tulong sa TALENTLESS? Gusto mo bang gawing autoplay script ang MIDI files, humanap ng tutorials, o humingi ng tulong sa Discord? I-click ang button sa ibaba para kopyahin ang link sa aking opisyal na website!",
+        ["vi"] = "C·∫ßn tr·ª£ gi√∫p v·ª?i TALENTLESS? Mu·ª?n chuy·ª?n file MIDI th√†nh script autoplay, t√¨m h∆∞·ª?ng d·∫´n ho·∫∑c nh·∫≠n tr·ª£ gi√∫p t·ª´ server Discord? Nh·∫•n n√∫t b√™n d∆∞·ª?i ƒ?·ª? sao ch√©p li√™n k·∫øt t·ª?i website ch√≠nh th·ª©c c·ªßa t√¥i!",
+        ["fr"] = "Besoin d'aide avec TALENTLESS ? Vous voulez convertir des fichiers MIDI en scripts d'autoplay, trouver des tutoriels ou obtenir de l'aide sur Discord ? Cliquez sur le bouton ci-dessous pour copier le lien vers mon site officiel !",
+        ["de"] = "Brauchen Sie Hilfe mit TALENTLESS? M√∂chten Sie MIDI-Dateien in Autoplay-Skripte umwandeln, Tutorials finden oder Hilfe im Discord erhalten? Klicken Sie auf die Schaltfl√§che unten, um den Link zu meiner offiziellen Website zu kopieren!",
+        ["ja"] = "TALENTLESS„ÅÆ‰Ωø„Å?Ê?π„ÅßÂ?∞„Å£„Å¶„Å?„Åæ„Å?„Å?Ôº?MIDI„??„?°„?§„?´„??Ë?™Â??Êº?Â•è„?π„?Ø„?™„??„??„Å´Â§?Êè?„Å?„Å?„??„?Å„?Å„?•„?º„??„?™„?¢„?´„??Ê?¢„Å?„Å?„??„?ÅDiscord„Åß„?µ„?ù„?º„??„??Âè?„Å?„Å?„??„Åß„Åç„Åæ„Å?„??‰∏?„ÅÆ„??„?ø„?≥„??„?Ø„?™„??„?Ø„Å?„Å¶Â?¨Âºè„?µ„?§„??„ÅÆ„?™„?≥„?Ø„??„?≥„??„?º„Å?„Å¶„Åè„Å†„Å?„Å?ÔºÅ",
+        ["ko"] = "TALENTLESSÏ?ê Îè?Ï??Ïù¥ Ì??Ï??Ì??Ï?†Í∞?Ï??? MIDI Ì??ÏùºÏù? Ï?êÎè? Ï?¨Ï?ù Ï?§ÌÅ¨Î¶ΩÌ?∏Î°? Î≥?Ì??Ì??Í±∞Î??, Ì??Ì?†Î¶¨Ï?ºÏù? Ï∞æÍ±∞Î??, Discord Ï??Î≤?Ï?êÏ?? Îè?Ï??Ïù? Î∞?Í≥† Ï?∂Î??Ï??? Ï??Î?? Î≤?Ì?ºÏù? ÌÅ¥Î¶≠Ì??Ï?¨ Í≥µÏ?ù Ï?πÏ?¨Ïù¥Ì?∏ ÎßÅÌÅ¨Î•º Î≥µÏ?¨Ì??Ï?∏Ï??!",
+        ["tr"] = "TALENTLESS hakkƒ±nda yardƒ±ma mƒ± ihtiyacƒ±nƒ±z var? MIDI dosyalarƒ±nƒ± autoplay script‚??lere d√∂n√º≈?t√ºrmek, rehberler bulmak veya Discord sunucusundan yardƒ±m almak ister misiniz? Resmi web sitemin baƒ?lantƒ±sƒ±nƒ± kopº Î∞?Ïù? Ï?? Ï??Ï?µÎ??Î?§.",
+        ["tr"] = "Anahtarƒ± almak i√ßin sitedeki g√∂revi tamamlayƒ±n.",
+        ["ar"] = "ÿ£Ÿ?Ÿ?ŸêŸ? ÿßŸ?Ÿ?Ÿ?Ÿ?ÿ© ÿπŸ?Ÿ? ÿßŸ?Ÿ?Ÿ?Ÿ?ÿπ Ÿ?ÿ™ÿ≠ÿµŸ? ÿπŸ?Ÿ? ÿßŸ?Ÿ?ŸÅÿ™ÿßÿ≠."
+    },
+
+    ["pastekeyhere"] = {
+        ["en"] = "Ready to launch ‚??",
+        ["pt-BR"] = "Cole a chave aqui ‚??",
+        ["es"] = "Pega la clave aqu√≠ ‚??",
+        ["ru"] = "–?—Å—?–∞–≤—?—?–µ –∫–ª—?—? —Å—?–¥–∞ ‚??",
+        ["zh-CN"] = "Â?®Ê≠§Á≤?Ë¥¥ÂØ?È?• ‚??",
+        ["id"] = "Tempel kunci di sini ‚??",
+        ["fil"] = "I-paste ang key dito ‚??",
+        ["vi"] = "D√°n m√£ v√†o ƒ?√¢y ‚??",
+        ["fr"] = "Collez la cl√© ici ‚??",
+        ["de"] = "F√ºge den Schl√ºssel hier ein ‚??",
+        ["ja"] = "„Å?„Å?„Å´„?≠„?º„??Ë≤º„??‰ª?„Å? ‚??",
+        ["ko"] = "Ï?¨Í∏∞Ï?ê Ì?§Î•º Î∂?Ï?¨Î?£Í∏∞ ‚??",
+        ["tr"] = "Anahtarƒ± buraya yapƒ±≈?tƒ±r ‚??",
+        ["ar"] = "ÿ£Ÿ?ÿµŸêŸ? ÿßŸ?Ÿ?ŸÅÿ™ÿßÿ≠ Ÿ?Ÿ?ÿß ‚??"
+    },
+
+    ["submitkey"] = {
+        ["en"] = "Continue!",
+        ["pt-BR"] = "Enviar chave!",
+        ["es"] = "Enviar clave!",
+        ["ru"] = "–?—?–ø—?–∞–≤–∏—?—? –∫–ª—?—?!",
+        ["zh-CN"] = "Êèê‰∫§ÂØ?È?•ÔºÅ",
+        ["id"] = "Kirim kunci!",
+        ["fil"] = "Isumite ang key!",
+        ["vi"] = "G·ª≠i m√£!",
+        ["fr"] = "Envoyer la cl√© !",
+        ["de"] = "Schl√ºssel senden!",
+        ["ja"] = "„?≠„?º„??È?Å‰ø°ÔºÅ",
+        ["ko"] = "Ì?§ Ï†?Ï∂?!",
+        ["tr"] = "Anahtarƒ± g√∂nder!",
+        ["ar"] = "ÿ£ÿ±ÿ≥Ÿ? ÿßŸ?Ÿ?ŸÅÿ™ÿßÿ≠!"
+    },
+    
+    ["keylinkcopied"] = {
+        ["en"] = "The project link has been copied to your clipboard.",
+        ["pt-BR"] = "O link da chave foi copiado para sua √°rea de transfer√™ncia.",
+        ["es"] = "El enlace de la clave se copi√≥ en tu portapapeles.",
+        ["ru"] = "–°—Å—?–ª–∫–∞ –Ω–∞ –∫–ª—?—? —Å–∫–æ–ø–∏—?–æ–≤–∞–Ω–∞ –≤ –≤–∞—? –±—?—?–µ—? –æ–±–º–µ–Ω–∞.",
+        ["zh-CN"] = "ÂØ?È?•È?æÊ?•Â∑≤Â§çÂ?∂Â?∞Ê?®Á??Â?™Ë¥¥Êùø„??",
+        ["id"] = "Tautan kunci telah disalin ke papan klip Anda.",
+        ["fil"] = "Nakopya na sa iyong clipboard ang link ng key.",
+        ["vi"] = "Li√™n k·∫øt kh√≥a ƒ?√£ ƒ?∆∞·ª£c sao ch√©p v√†o clipboard c·ªßa b·∫°n.",
+        ["fr"] = "Le lien de la cl√© a √©t√© copi√© dans votre presse-papiers.",
+        ["de"] = "Der Schl√ºssellink wurde in deine Zwischenablage kopiert.",
+        ["ja"] = "„?≠„?º„ÅÆ„?™„?≥„?Ø„Å?„?Ø„?™„??„??„??„?º„??„Å´„?≥„??„?º„Å?„??„Åæ„Å?„Å?„??",
+        ["ko"] = "Ì?§ ÎßÅÌÅ¨Í∞? ÌÅ¥Î¶ΩÎ≥¥Î??Ï?ê Î≥µÏ?¨Îê?Ï??Ï?µÎ??Î?§.",
+        ["tr"] = "Anahtar baƒ?lantƒ±sƒ± panonuza kopyalandƒ±.",
+        ["ar"] = "ÿ™Ÿ? Ÿ?ÿ≥ÿÆ ÿ±ÿßÿ®ÿ∑ ÿßŸ?Ÿ?ŸÅÿ™ÿßÿ≠ ÿ•Ÿ?Ÿ? ÿßŸ?ÿ≠ÿßŸÅÿ∏ÿ© ÿßŸ?ÿÆÿßÿµÿ© ÿ®Ÿ?."
+    },
+
+    ["keyempty"] = {
+        ["en"] = "Input is empty. Please follow the instructions.",
+        ["pt-BR"] = "O campo da chave est√° vazio. Leia as instru√ß√µes para obter a chave.",
+        ["es"] = "El campo de la clave est√° vac√≠o. Lee las instrucciones para obtener la clave.",
+        ["ru"] = "–?–æ–ª–µ –≤–≤–æ–¥–∞ –∫–ª—?—?–∞ –ø—?—Å—?–æ. –?—?–æ—?—?–∏—?–µ –∏–Ω—Å—?—?—?–∫—?–∏–∏, —?—?–æ–±—? –ø–æ–ª—?—?–∏—?—? –∫–ª—?—?.",
+        ["zh-CN"] = "ÂØ?È?•Ëæ?Â?•‰∏∫Á©∫„??ËØ∑È??ËØªËØ¥Ê??‰ª•Ë?∑Âè?ÂØ?È?•„??",
+        ["id"] = "Input kunci kosong. Baca instruksinya untuk mendapatkan kunci.",
+        ["fil"] = "Walang laman ang key input. Basahin ang mga tagubilin para makuha ang key.",
+        ["vi"] = "√? nh·∫≠p kh√≥a ƒ?ang tr·ª?ng. H√£y ƒ?·ªçc h∆∞·ª?ng d·∫´n ƒ?·ª? l·∫•y kh√≥a.",
+        ["fr"] = "Le champ de la cl√© est vide. Lisez les instructions pour obtenir la cl√©.",
+        ["de"] = "Die Schl√ºsseleingabe ist leer. Lies die Anweisungen, um den Schl√ºssel zu erhalten.",
+        ["ja"] = "„?≠„?ºÂ?•Â??„Å?Á©∫„Åß„Å?„??„?≠„?º„??Âè?Âæ?„Å?„??„Å´„ÅØÊ??Á§∫„??Ë™≠„??„Åß„Åè„Å†„Å?„Å?„??",
+        ["ko"] = "Ì?§ Ï??Î†•Ïù¥ Îπ?Ï?¥ Ï??Ï?µÎ??Î?§. Ì?§Î•º Ï?ªÏ?ºÎ†§Î©¥ Ïß?Ïπ®Ïù? ÏùΩÏ?ºÏ?∏Ï??.",
+        ["tr"] = "Anahtar giri≈?i bo≈?. Anahtarƒ± almak i√ßin talimatlarƒ± okuyun.",
+        ["ar"] = "ÿ•ÿØÿÆÿßŸ? ÿßŸ?Ÿ?ŸÅÿ™ÿßÿ≠ ŸÅÿßÿ±ÿ∫. ÿßŸ?ÿ±ÿ£ ÿßŸ?ÿ™ÿπŸ?Ÿ?Ÿ?ÿßÿ™ Ÿ?Ÿ?ÿ≠ÿµŸ?Ÿ? ÿπŸ?Ÿ? ÿßŸ?Ÿ?ŸÅÿ™ÿßÿ≠."
+    },
+    
+    ["keysuccess"] = {
+        ["en"] = "Success.",
+        ["pt-BR"] = "Sucesso.",
+        ["es"] = "√?xito.",
+        ["ru"] = "–£—Å–ø–µ—?–Ω–æ.",
+        ["zh-CN"] = "Ê?êÂ??„??",
+        ["id"] = "Sukses.",
+        ["fil"] = "Tagumpay.",
+        ["vi"] = "Th√†nh c√¥ng.",
+        ["fr"] = "Succ√®s.",
+        ["de"] = "Erfolg.",
+        ["ja"] = "Ê?êÂ??„??",
+        ["ko"] = "Ï?±Í≥µ.",
+        ["tr"] = "Ba≈?arƒ±lƒ±.",
+        ["ar"] = "Ÿ?ÿ¨ÿßÿ≠."
+    },
+      
+    ["keyinvalid"] = {
+        ["en"] = "Access check is disabled in this open-source build.",
+        ["pt-BR"] = "Sua chave √© inv√°lida. Se precisar de ajuda, entre no servidor do Discord clicando no bot√£o de interroga√ß√£o.",
+        ["es"] = "Tu clave es inv√°lida. Si necesitas ayuda, √∫nete al servidor de Discord haciendo clic en el bot√≥n de interrogaci√≥n.",
+        ["ru"] = "–?–∞—? –∫–ª—?—? –Ω–µ–¥–µ–π—Å—?–≤–∏—?–µ–ª–µ–Ω. –?—Å–ª–∏ –Ω—?–∂–Ω–∞ –ø–æ–º–æ—?—?, –ø—?–∏—Å–æ–µ–¥–∏–Ω—è–π—?–µ—Å—? –∫ —Å–µ—?–≤–µ—?—? Discord, –Ω–∞–∂–∞–≤ –Ω–∞ –∫–Ω–æ–ø–∫—? —Å –≤–æ–ø—?–æ—Å–∏—?–µ–ª—?–Ω—?–º –∑–Ω–∞–∫–æ–º.",
+        ["zh-CN"] = "Ê?®Á??ÂØ?È?•Ê?†Ê??„??Â¶?È??Â∏ÆÂ?©Ôº?ËØ∑Á?πÂ?ªÈ?ÆÂè∑Ê??È?ÆÂ?†Â?• Discord Ê?çÂ?°Â?®„??",
+        ["id"] = "Kunci Anda tidak valid. Jika membutuhkan bantuan, bergabunglah dengan server Discord dengan mengklik tombol tanda tanya.",
+        ["fil"] = "Ang iyong key ay hindi wasto. Kung kailangan mo ng tulong, sumali sa Discord server sa pamamagitan ng pag-click sa question mark na button.",
+        ["vi"] = "Kh√≥a c·ªßa b·∫°n kh√¥ng h·ª£p l·ª?. N·∫øu c·∫ßn tr·ª£ gi√∫p, h√£y tham gia server Discord b·∫±ng c√°ch nh·∫•n n√∫t d·∫•u h·ªèi.",
+        ["fr"] = "Votre cl√© est invalide. Si vous avez besoin d'aide, rejoignez le serveur Discord en cliquant sur le bouton point d'interrogation.",
+        ["de"] = "Dein Schl√ºssel ist ung√ºltig. Wenn du Hilfe brauchst, tritt dem Discord-Server bei, indem du auf die Fragezeichen-Schaltfl√§che klickst.",
+        ["ja"] = "„Å?„Å™„Å?„ÅÆ„?≠„?º„ÅØÁ?°Â?π„Åß„Å?„??„??„?´„??„Å?Âø?Ë¶Å„Å™Â†¥Âê?„ÅØ„?Å„?Ø„?®„?π„?Å„?ß„?≥„??„?º„?Ø„??„?ø„?≥„??„?Ø„?™„??„?Ø„Å?„Å¶ Discord „?µ„?º„?ê„?º„Å´Âè?Â?†„Å?„Å¶„Åè„Å†„Å?„Å?„??",
+        ["ko"] = "Ì?§Í∞? Ï?†Ì?®Ì??Ïß? Ï??Ï?µÎ??Î?§. Îè?Ï??Ïù¥ Ì??Ï??Ì??Î©¥ Î¨ºÏù?Ì?? Î≤?Ì?ºÏù? ÌÅ¥Î¶≠Ì??Ï?¨ Discord Ï??Î≤?Ï?ê Ï∞∏Ï?¨Ì??Ï?∏Ï??.",
+        ["tr"] = "Anahtarƒ±nƒ±z ge√ßersiz. Yardƒ±ma ihtiyacƒ±nƒ±z varsa, soru i≈?areti d√ºƒ?mesine tƒ±klayarak Discord sunucusuna katƒ±lƒ±n.",
+        ["ar"] = "ÿßŸ?Ÿ?ŸÅÿ™ÿßÿ≠ ÿßŸ?ÿÆÿßÿµ ÿ®Ÿ? ÿ∫Ÿ?ÿ± ÿµÿßŸ?ÿ≠. ÿ•ÿ∞ÿß Ÿ?Ÿ?ÿ™ ÿ®ÿ≠ÿßÿ¨ÿ© ÿ•Ÿ?Ÿ? Ÿ?ÿ≥ÿßÿπÿØÿ©ÿ? ÿßŸ?ÿ∂Ÿ? ÿ•Ÿ?Ÿ? ÿÆÿßÿØŸ? Discord ÿ®ÿßŸ?Ÿ?Ÿ?ÿ± ÿπŸ?Ÿ? ÿ≤ÿ± ÿπŸ?ÿßŸ?ÿ© ÿßŸ?ÿßÿ≥ÿ™ŸÅŸ?ÿßŸ?."
+    },
+    
+    ["keyexpired"] = {
+        ["en"] = "No key is required in this open-source build.",
+        ["pt-BR"] = "Esta chave expirou. A chave foi redefinida recentemente. Refa√ßa as tarefas no site da chave para obter uma nova chave.",
+        ["es"] = "Esta clave ha expirado. La clave se reinici√≥ recientemente. Vuelve a hacer las tareas en el sitio web de la clave para obtener una nueva.",
+        ["ru"] = "–≠—?–æ—? –∫–ª—?—? –∏—Å—?—?–∫. –?–ª—?—? –±—?–ª –Ω–µ–¥–∞–≤–Ω–æ —Å–±—?–æ—?–µ–Ω. –?—?–ø–æ–ª–Ω–∏—?–µ –∑–∞–¥–∞–Ω–∏—è –Ω–∞ —Å–∞–π—?–µ –∫–ª—?—?–∞, —?—?–æ–±—? –ø–æ–ª—?—?–∏—?—? –Ω–æ–≤—?–π.",
+        ["zh-CN"] = "Ê≠§ÂØ?È?•Â∑≤Ëø?Ê??„??ÂØ?È?•Ê??Ëø?Ë¢´È?çÁΩÆ„??ËØ∑È?çÊ?∞Â?®ÂØ?È?•ÁΩ?Á´?ÂÆ?Ê?ê‰ªªÂ?°‰ª•Ë?∑Âè?Ê?∞ÂØ?È?•„??",
+        ["id"] = "Kunci ini sudah kedaluwarsa. Kunci baru-baru ini direset. Lakukan kembali tugas di situs kunci untuk mendapatkan kunci baru.",
+        ["fil"] = "Paso na ang key na ito. Kakare-reset lang ng key kamakailan. Gawin muli ang mga task sa key website para makakuha ng bagong key.",
+        ["vi"] = "Kh√≥a n√†y ƒ?√£ h·∫øt h·∫°n. Kh√≥a v·ª´a ƒ?∆∞·ª£c ƒ?·∫∑t l·∫°i g·∫ßn ƒ?√¢y. H√£y l√†m l·∫°i c√°c nhi·ª?m v·ª• tr√™n trang web ƒ?·ª? nh·∫≠n kh√≥a m·ª?i.",
+        ["fr"] = "Cette cl√© a expir√©. La cl√© a √©t√© r√©initialis√©e r√©cemment. Refaite les t√¢ches sur le site pour obtenir une nouvelle cl√©.",
+        ["de"] = "Dieser Schl√ºssel ist abgelaufen. Der Schl√ºssel wurde vor Kurzem zur√ºckgesetzt. Wiederhole die Aufgaben auf der Schl√ºssel-Website, um einen neuen Schl√ºssel zu erhalten.",
+        ["ja"] = "„Å?„ÅÆ„?≠„?º„ÅØÊ??È?êÂ??„??„Åß„Å?„??„?≠„?º„ÅØÊ??Ëø?„?™„?ª„??„??„Å?„??„Åæ„Å?„Å?„??Ê?∞„Å?„Å?„?≠„?º„??Âè?Âæ?„Å?„??„Å´„ÅØ„?Å„?≠„?º„?µ„?§„??„Åß„?ø„?π„?Ø„??„??„??Á?¥„Å?„Å¶„Åè„Å†„Å?„Å?„??",
+        ["ko"] = "Ïù¥ Ì?§Î?? Îß?Î£?Îê?Ï??Ï?µÎ??Î?§. Ì?§Í∞? Ïµ?Í∑ºÏ?ê Ï¥?Í∏∞Ì??Îê?Ï??Ï?µÎ??Î?§. Ï??Î°?Ï?¥ Ì?§Î•º Î∞?Ï?ºÎ†§Î©¥ Ì?§ Ï?πÏ?¨Ïù¥Ì?∏Ï?êÏ?? Ï??Ï??Ïù? Î?§Ï?? Ï??Ì??Ì??Ï?∏Ï??.",
+        ["tr"] = "Bu anahtarƒ±n s√ºresi doldu. Anahtar yakƒ±n zamanda sƒ±fƒ±rlandƒ±. Yeni bir anahtar almak i√ßin anahtar sitesindeki g√∂revleri yeniden yapƒ±n.",
+        ["ar"] = "Ÿ?ÿ∞Ÿ? ÿßŸ?Ÿ?ŸÅÿ™ÿßÿ≠ Ÿ?Ÿ?ÿ™Ÿ?Ÿ? ÿßŸ?ÿµŸ?ÿßÿ≠Ÿ?ÿ©. ÿ™Ÿ? ÿ•ÿπÿßÿØÿ© ÿ™ÿπŸ?Ÿ?Ÿ? ÿßŸ?Ÿ?ŸÅÿ™ÿßÿ≠ Ÿ?ÿ§ÿÆÿ±Ÿ?ÿß. ÿ£ÿπÿØ ÿßŸ?Ÿ?Ÿ?ÿßŸ? ÿ®ÿßŸ?Ÿ?Ÿ?ÿßŸ? ŸÅŸ? Ÿ?Ÿ?Ÿ?ÿπ ÿßŸ?Ÿ?ŸÅÿ™ÿßÿ≠ Ÿ?Ÿ?ÿ≠ÿµŸ?Ÿ? ÿπŸ?Ÿ? Ÿ?ŸÅÿ™ÿßÿ≠ ÿ¨ÿØŸ?ÿØ."
+    },
+
+    ["categories"] = {
+        ["en"] = "categories",
+        ["pt-BR"] = "categorias",
+        ["es"] = "categor√≠as",
+        ["ru"] = "–∫–∞—?–µ–≥–æ—?–∏–∏",
+        ["zh-CN"] = "Â??Á±ª",
+        ["id"] = "kategori",
+        ["fil"] = "mga kategorya",
+        ["vi"] = "th·ª? lo·∫°i",
+        ["fr"] = "cat√©gories",
+        ["de"] = "kategorien",
+        ["ja"] = "„?´„??„?¥„?™",
+        ["ko"] = "Ïπ¥Ì??Í≥†Î¶¨",
+        ["tr"] = "kategoriler",
+        ["ar"] = "ÿßŸ?ŸÅÿ¶ÿßÿ™"
+    },
+    
+    ["utilities"] = {
+        ["en"] = "utilities",
+        ["pt-BR"] = "ferramentas",
+        ["es"] = "utilidades",
+        ["ru"] = "—?—?–∏–ª–∏—?—?",
+        ["zh-CN"] = "ÂÆ?Á?®Â∑•Â?∑",
+        ["id"] = "utilitas",
+        ["fil"] = "mga kagamitan",
+        ["vi"] = "ti·ª?n √≠ch",
+        ["fr"] = "outils",
+        ["de"] = "dienstprogramme",
+        ["ja"] = "„?¶„?º„??„?£„?™„??„?£",
+        ["ko"] = "Ï?†Ì?∏Î¶¨Ì?∞",
+        ["tr"] = "ara√ßlar",
+        ["ar"] = "ÿßŸ?ÿ£ÿØŸ?ÿßÿ™"
+    },
+
+    ["copynewscript"] = {
+        ["en"] = "copy new script!",
+        ["pt-BR"] = "copiar novo script!",
+        ["es"] = "copiar nuevo script!",
+        ["ru"] = "—Å–∫–æ–ø–∏—?–æ–≤–∞—?—? –Ω–æ–≤—?–π —Å–∫—?–∏–ø—?!",
+        ["zh-CN"] = "Â§çÂ?∂Ê?∞Ë??Ê?¨ÔºÅ",
+        ["id"] = "salin skrip baru!",
+        ["fil"] = "kopyahin ang bagong script!",
+        ["vi"] = "sao ch√©p script m·ª?i!",
+        ["fr"] = "copier le nouveau script !",
+        ["de"] = "neues skript kopieren!",
+        ["ja"] = "Ê?∞„Å?„Å?„?π„?Ø„?™„??„??„??„?≥„??„?ºÔºÅ",
+        ["ko"] = "Ï?? Ï?§ÌÅ¨Î¶ΩÌ?∏ Î≥µÏ?¨!",
+        ["tr"] = "yeni scripti kopyala!",
+        ["ar"] = "Ÿ?ÿ≥ÿÆ ÿßŸ?ÿ®ÿ±Ÿ?ÿßŸ?ÿ¨ ÿßŸ?ÿ¨ÿØŸ?ÿØ!"
+    },
+    
+    ["scriptcopied"] = {
+        ["en"] = "copied!",
+        ["pt-BR"] = "copiado!",
+        ["es"] = "¬°copiado!",
+        ["ru"] = "—Å–∫–æ–ø–∏—?–æ–≤–∞–Ω–æ!",
+        ["zh-CN"] = "Â∑≤Â§çÂ?∂ÔºÅ",
+        ["id"] = "disalin!",
+        ["fil"] = "nakopya!",
+        ["vi"] = "ƒ?√£ sao ch√©p!",
+        ["fr"] = "copi√© !",
+        ["de"] = "kopiert!",
+        ["ja"] = "„?≥„??„?º„Å?„Åæ„Å?„Å?ÔºÅ",
+        ["ko"] = "Î≥µÏ?¨Îê®!",
+        ["tr"] = "kopyalandƒ±!",
+        ["ar"] = "ÿ™Ÿ? ÿßŸ?Ÿ?ÿ≥ÿÆ!"
+    },
+    
+    ["usenewloadstring"] = {
+        ["en"] = "use TALENTLESS from the new loadstring:",
+        ["pt-BR"] = "use TALENTLESS do novo loadstring:",
+        ["es"] = "usa TALENTLESS desde el nuevo loadstring:",
+        ["ru"] = "–∏—Å–ø–æ–ª—?–∑—?–π—?–µ TALENTLESS –∏–∑ –Ω–æ–≤–æ–π loadstring:",
+        ["zh-CN"] = "‰ª?Ê?∞Á?? loadstring ‰ΩøÁ?® TALENTLESSÔº?",
+        ["id"] = "gunakan TALENTLESS dari loadstring baru:",
+        ["fil"] = "gamitin ang TALENTLESS mula sa bagong loadstring:",
+        ["vi"] = "s·ª≠ d·ª•ng TALENTLESS t·ª´ loadstring m·ª?i:",
+        ["fr"] = "utilisez TALENTLESS depuis le nouveau loadstring :",
+        ["de"] = "verwende TALENTLESS aus dem neuen Loadstring:",
+        ["ja"] = "Ê?∞„Å?„Å? loadstring „Å?„?? TALENTLESS „??‰ΩøÁ?®Ôº?",
+        ["ko"] = "Ï?? loadstringÏ?êÏ?? TALENTLESS Ï?¨Ï?©:",
+        ["tr"] = "yeni loadstring'den TALENTLESS kullan:",
+        ["ar"] = "ÿßÿ≥ÿ™ÿÆÿØŸ? TALENTLESS Ÿ?Ÿ? loadstring ÿßŸ?ÿ¨ÿØŸ?ÿØ:"
+    },
+
+    ["stopplayingplaylist"] = {
+        ["en"] = "STOP PLAYING PLAYLIST",
+        ["pt-BR"] = "PARAR DE TOCAR PLAYLIST",
+        ["es"] = "DETENER REPRODUCCI√?N DE LA LISTA",
+        ["ru"] = "–?–°–¢–ê–ù–?–?–?–¢–¨ –?–?–°–?–†–?–?–?–?–?–?–?–ù–?–? –?–?–?–?–?–?–°–¢–ê",
+        ["zh-CN"] = "ÂÅ?Ê≠¢Ê?≠Ê?æÊ?≠Ê?æÂ??Ë°®",
+        ["id"] = "HENTIKAN PEMUTARAN PLAYLIST",
+        ["fil"] = "ITIGIL ANG PAG-PLAY NG PLAYLIST",
+        ["vi"] = "D·ª™NG PH√ÅT DANH S√ÅCH PH√ÅT",
+        ["fr"] = "ARR√?TER LA LECTURE DE LA PLAYLIST",
+        ["de"] = "WIEDERGABELISTE STOPPEN",
+        ["ja"] = "„??„?¨„?§„?™„?π„??„ÅÆÂ?çÁ??„??ÂÅ?Ê≠¢",
+        ["ko"] = "Ï?¨Ï?ùÎ™©Î°ù Ï?¨Ï?ù Ï§?Ïß?",
+        ["tr"] = "√?ALMA Lƒ∞STESƒ∞Nƒ∞ DURDUR",
+        ["ar"] = "ÿ•Ÿ?Ÿ?ÿßŸÅ ÿ™ÿ¥ÿ∫Ÿ?Ÿ? Ÿ?ÿßÿ¶Ÿ?ÿ© ÿßŸ?ÿ™ÿ¥ÿ∫Ÿ?Ÿ?"
+    },
+    
+    ["playlist"] = {
+        ["en"] = "playlist",
+        ["pt-BR"] = "playlist",
+        ["es"] = "lista",
+        ["ru"] = "–ø–ª–µ–π–ª–∏—Å—?",
+        ["zh-CN"] = "Ê?≠Ê?æÂ??Ë°®",
+        ["id"] = "playlist",
+        ["fil"] = "playlist",
+        ["vi"] = "ds ph√°t",
+        ["fr"] = "playlist",
+        ["de"] = "playlist",
+        ["ja"] = "„??„?¨„?§„?™„?π„??",
+        ["ko"] = "Ï?¨Ï?ùÎ™©Î°ù",
+        ["tr"] = "√ßalma listesi",
+        ["ar"] = "Ÿ?ÿßÿ¶Ÿ?ÿ© ÿßŸ?ÿ™ÿ¥ÿ∫Ÿ?Ÿ?"
+    },    
+
+    ["shuffleplaylist"] = {
+        ["en"] = "SHUFFLE PLAYLIST",
+        ["pt-BR"] = "ALEAT√?RIO",
+        ["es"] = "ALEAT.",
+        ["ru"] = "–?–?–†–?–?–?–®–ê–¢–¨",
+        ["zh-CN"] = "È?èÊ?∫Ê?≠Ê?æ",
+        ["id"] = "ACAK",
+        ["fil"] = "SHUFFLE",
+        ["vi"] = "X√ÅO TR·ª?N",
+        ["fr"] = "AL√?ATOIRE",
+        ["de"] = "MISCHEN",
+        ["ja"] = "„?∑„?£„??„??„?´",
+        ["ko"] = "Ï??Ì??",
+        ["tr"] = "KARI≈?TIR",
+        ["ar"] = "ÿπÿ¥Ÿ?ÿßÿ¶Ÿ?"
+    },
+    
+    ["playplaylist"] = {
+        ["en"] = "PLAY PLAYLIST",
+        ["pt-BR"] = "REPRODUZIR",
+        ["es"] = "REPROD.",
+        ["ru"] = "–?–?–†–ê–¢–¨",
+        ["zh-CN"] = "Ê?≠Ê?æ",
+        ["id"] = "PUTAR",
+        ["fil"] = "PLAY",
+        ["vi"] = "PH√ÅT",
+        ["fr"] = "LIRE",
+        ["de"] = "ABSPIELEN",
+        ["ja"] = "Â?çÁ??",
+        ["ko"] = "Ï?¨Ï?ù",
+        ["tr"] = "√?AL",
+        ["ar"] = "ÿ™ÿ¥ÿ∫Ÿ?Ÿ?"
+    },    
+
+    ["playlisttooshort"] = {
+        ["en"] = "You have less than 2 songs in your playlist.",
+        ["pt-BR"] = "Voc√™ tem menos de 2 m√∫sicas na sua playlist.",
+        ["es"] = "Tienes menos de 2 canciones en tu lista.",
+        ["ru"] = "–£ –≤–∞—Å –º–µ–Ω—?—?–µ 2 –ø–µ—Å–µ–Ω –≤ –ø–ª–µ–π–ª–∏—Å—?–µ.",
+        ["zh-CN"] = "‰Ω†Á??Ê?≠Ê?æÂ??Ë°®‰∏≠Â∞?‰∫?2È¶?Ê≠?Ê?≤„??",
+        ["id"] = "Daftar putar Anda kurang dari 2 lagu.",
+        ["fil"] = "Mas mababa sa 2 ang kanta sa playlist mo.",
+        ["vi"] = "Playlist c·ªßa b·∫°n c√≥ √≠t h∆°n 2 b√†i h√°t.",
+        ["fr"] = "Vous avez moins de 2 chansons dans votre playlist.",
+        ["de"] = "Du hast weniger als 2 Songs in deiner Playlist.",
+        ["ja"] = "„??„?¨„?§„?™„?π„??„Å´2Ê?≤Ê?™Ê∫?„Å?„Å?„Å?„??„Åæ„Å?„??„??",
+        ["ko"] = "Ï?¨Ï?ùÎ™©Î°ùÏ?ê 2Í≥° ÎØ∏Îß?Ïù¥ Ï??Ï?µÎ??Î?§.",
+        ["tr"] = "√?alma listenizde 2'den az ≈?arkƒ± var.",
+        ["ar"] = "Ÿ?ÿØŸ?Ÿ? ÿ£Ÿ?Ÿ? Ÿ?Ÿ? ÿ£ÿ∫Ÿ?Ÿ?ÿ™Ÿ?Ÿ? ŸÅŸ? Ÿ?ÿßÿ¶Ÿ?ÿ© ÿßŸ?ÿ™ÿ¥ÿ∫Ÿ?Ÿ?."
+    },
+
+    ["ALTALE"] = {
+        ["ja"] = "„?¢„?´„?ø„?¨"
+    },
+
+    ["CENTIMETER"] = {
+        ["ja"] = "„?ª„?≥„?Å„?°„?º„??„?´ (CENTIMETER)"
+    },
+
+    ["FUKASHIGI NO CARTE"] = {
+        ["ja"] = "‰∏çÂèØÊ?ùË≠∞„ÅÆ„?´„?´„??"
+    },
+    
+    ["GIORNO'S THEME"] = {
+        ["ja"] = "„?§„?´„?ª„?¥„?ß„?≥„??„?ª„??„?º„?≠"
+    },
+    
+    ["GURENGE"] = {
+        ["ja"] = "Á¥?Ë?ÆËèØ"
+    },
+    
+    ["MERRY-GO-ROUND OF LIFE"] = {
+        ["ja"] = "Áß?ÂØ?ÊÅ?Âø?"
+    },
+    
+    ["HOWLS MOVING CASTLE"] = {
+        ["ja"] = "‰∫∫Á??„ÅÆ„?°„?™„?º„?¥„?º„?©„?≥„??"
+    },
+    
+    ["KAWAIKUTEGOMEN"] = {
+        ["ja"] = "ÂèØÊ??„Åè„Å¶„Å?„?Å„??"
+    },
+    
+    ["L'S THEME"] = {
+        ["ja"] = "L„ÅÆ„??„?º„??"
+    },
+    
+    ["LIGHT'S THEME"] = {
+        ["ja"] = "„?©„?§„??„ÅÆ„??„?º„??"
+    },
+    
+    ["LOST UMBRELLA"] = {
+        ["ja"] = "„?≠„?π„??„?¢„?≥„??„?¨„?©"
+    },
+    
+    ["OVERTAKEN"] = {
+        ["ja"] = "ËøΩ„Å?„Å§„?Å„??„??„Å?"
+    },
+    
+    ["RACING INTO THE NIGHT"] = {
+        ["ja"] = "Â§?„Å´Èß?„Å?„??"
+    },
+    
+    ["SHIKAIRO DAYS"] = {
+        ["ja"] = "„?∑„?´Ë?≤„??„?§„?∫"
+    },
+    
+    ["SILHOUETTE"] = {
+        ["ja"] = "„?∑„?´„?®„??„??"
+    },
+    
+    ["SPARKLE"] = {
+        ["ja"] = "„?π„??„?º„?Ø„?´"
+    },
+    
+    ["SUZUME"] = {
+        ["ja"] = "„Å?„Å?„?Å„ÅÆÊ?∏Á∑†„Åæ„??"
+    },
+    
+    ["TIME FLOWS EVER ONWARD"] = {
+        ["ja"] = "Ê??„ÅØÊµÅ„??„??„Åè"
+    },
+    
+    ["YOUNG GIRL A"] = {
+        ["ja"] = "Â∞?Â•≥A"
+    },
+    
+    ["COMEDY"] = {
+        ["ja"] = "Â??Â??"
+    },
+    
+    ["GUREN NO YUMIYA"] = {
+        ["ja"] = "Á¥?Ë?Æ„ÅÆÂº?Á?¢"
+    },
+    
+    ["A CRUEL ANGEL'S THESIS"] = {
+        ["ja"] = "ÊÆ?È?∑„Å™Â§©‰Ωø„ÅÆ„??„?º„?º"
+    },
+    
+    ["I'M INVINCIBLE"] = {
+        ["ja"] = "ÁßÅ„ÅØÊ??Âº∑"
+    },
+    
+    ["YOUR GAZE, CREPUSCULAR"] = {
+        ["ja"] = "„Åæ„Å™„Å?„Å?„ÅØÂ??"
+    },
+    
+    ["SHINZOU WO SASEGEYO!"] = {
+        ["ja"] = "Âø?Ë??„??Êçß„Å?„??ÔºÅ"
+    },
+    
+    ["HANA NI NATTE"] = {
+        ["ja"] = "Ë?±„Å´„Å™„Å£„Å¶"
+    },
+    
+    ["SADNESS AND SORROW"] = {
+        ["ja"] = "Ê?≤„Å?„Åø„ÅÆÂê?„Å?„Å?ÂÅ¥"
+    },
+    
+    ["WE WERE ANGELS"] = {
+        ["ja"] = "Â??ÈÅ?„ÅØÂ§©‰Ωø„Å†„Å£„Å?"
+    },
+    
+    ["ONE SUMMER'S DAY"] = {
+        ["ja"] = "„Å?„ÅÆÂ§è„Å∏"
+    },
+    
+    ["KAMADO TANJIRO NO UTA"] = {
+        ["ja"] = "Á´?È??Á?≠Ê≤ªÈ??„ÅÆ„Å?„Å?"
+    },
+    
+    ["RENAI CIRCULATION"] = {
+        ["ja"] = "ÊÅ?Ê??„?µ„?º„?≠„?•„?¨„?º„?∑„?ß„?≥"
+    },
+    
+    ["CHIISANA KOI NO UTA"] = {
+        ["ja"] = "Â∞è„Å?„Å™ÊÅ?„ÅÆ„Å?„Å?"
+    },
+    
+    ["WHERE OUR BLUE IS"] = {
+        ["ja"] = "Èù?„ÅÆ„Å?„Åø„Å?"
+    },
+    
+    ["REFLECTIONS"] = {
+        ["ja"] = "„?™„??„?¨„?Ø„?∑„?ß„?≥"
+    },
+    
+    ["AI‚?°SCREAM!"] = {
+        ["ja"] = "Ê??‚?°„?π„?Ø„?™ÔΩ?„?†ÔºÅ"
+    },
+
+    ["A TALE OF SIX TRILLION YEARS AND A NIGHT"] = {
+        ["ja"] = "Â?≠Â??Âπ¥„Å®‰∏?Â§?Á?©Ë™?"
+    },
+
+    ["PROPOSE (9LANA)"] = {
+        ["ja"] = "„??„?≠„?ù„?º„?∫"
+    },
+
+    ["SINKING TOWN"] = {
+        ["ja"] = "Ê≤?„?Å„??Ë°?"
+    },
+
+    [""] = {
+        ["ja"] = ""
+    },
+
+    [""] = {
+        ["ja"] = ""
+    },
+
+    [""] = {
+        ["ja"] = ""
+    },
+
+    [""] = {
+        ["ja"] = ""
+    },
+
+    [""] = {
+        ["ja"] = ""
+    },
+}
+
+_G.languages = _G.languages or {
+    ["en"] = false,       -- English
+    ["pt-BR"] = false,    -- Brazilian Portuguese
+    ["es"] = false,       -- Spanish
+    ["ru"] = false,       -- Russian
+    ["zh-CN"] = false,    -- Chinese (Simplified / Mandarin)
+    ["id"] = false,       -- Indonesian
+    ["fil"] = false,      -- Filipino (Tagalog)
+    ["vi"] = false,       -- Vietnamese
+    ["fr"] = false,       -- French
+    ["de"] = false,       -- German
+    ["ja"] = false,       -- Japanese
+    ["ko"] = false,       -- Korean
+    ["tr"] = false,       -- Turkish
+    ["ar"] = false        -- Arabic
+}
+
+local function setLanguage(lang)
+    if _G.languages[lang] ~= nil then
+        for k, v in pairs(_G.languages) do
+            _G.languages[k] = false
+        end
+        _G.languages[lang] = true
+        print("Language set to:", lang)
+    else
+        warn("Language not supported:", lang)
+    end
+    for k, v in pairs(_G.languages) do
+        print(k, v)
+    end
+end
+
+
+function translator:translateText(text)
+
+    local activeLanguage
+
+    if _G.languages then
+        for lang, isActive in pairs(_G.languages) do
+            if isActive then
+                activeLanguage = lang
+                break
+            end
+        end
+    else
+    end
+
+    activeLanguage = activeLanguage or "en"
+
+    if not translations then
+        return text
+    end
+
+    if translations[text] then
+        if translations[text][activeLanguage] then
+            return translations[text][activeLanguage]
+        else
+        end
+    else
+    end
+
+    return text -- fallback
+end
+
+
+local languageCodes = {
+    ["en"] = "English",
+    ["pt-BR"] = "Portugu√™s (Brasil)",
+    ["es"] = "Espa√±ol",
+    ["ru"] = "–†—?—Å—Å–∫–∏–π",
+    ["zh-CN"] = "‰∏≠Ê??",
+    ["id"] = "Bahasa Indonesia",
+    ["fil"] = "Filipino",
+    ["vi"] = "Ti·∫øng Vi·ª?t",
+    ["fr"] = "Fran√ßais",
+    ["de"] = "Deutsch",
+    ["ja"] = "Ê?•Ê?¨Ë™?",
+    ["ko"] = "Ì??Íµ≠Ï?¥",
+    ["tr"] = "T√ºrk√ße",
+    ["ar"] = "ÿßŸ?ÿπÿ±ÿ®Ÿ?ÿ©"
+}
+
+function translator:requestLang(frame, type)
+
+    local finished = false
+    local selectedLanguage = "en"
+
+    print("Checking for saved language...")
+    
+    local savedLang
+
+    if type == "first" then
+        local success, result = pcall(readfile, "TALENTLESS_language.txt")
+        if success then
+            savedLang = result
+            print("Saved language:", savedLang)
+            print("Language codes has this?", languageCodes[savedLang])
+
+            if languageCodes[savedLang] then
+                setLanguage(savedLang)
+                return
+            end
+        else
+            warn("Failed to read file: TALENTLESS_language.txt")
+        end
+    end
+
+
+    local languageFrame = Instance.new("Frame")
+    local uic1 = Instance.new("UICorner")
+    local title = Instance.new("TextLabel")
+    local uic2 = Instance.new("UICorner")
+    local closeButton = Instance.new("TextButton")
+    local languageSelection = Instance.new("ScrollingFrame")
+    local UIListLayout = Instance.new("UIListLayout")
+    local UIPadding = Instance.new("UIPadding")
+    local whatLanguageTitle = Instance.new("TextLabel")
+    local Proceed = Instance.new("TextButton")
+    local DropdownFrame = Instance.new("Frame")
+    local OpenSelector = Instance.new("TextButton")
+    local DropdownArrow = Instance.new("TextButton")
+
+    languageFrame.Name = "languageFrame"
+    languageFrame.Parent = frame
+    languageFrame.AnchorPoint = Vector2.new(0.5, 0.5)
+    languageFrame.BackgroundColor3 = Color3.fromRGB(33, 33, 41)
+    languageFrame.Position = UDim2.new(0.5, 0, 0.5, 0)
+    languageFrame.Size = UDim2.new(0, 475, 0, 272)
+    languageFrame.ZIndex = 50
+
+    uic1.CornerRadius = UDim.new(0, 4)
+    uic1.Name = "uic1"
+    uic1.Parent = languageFrame
+
+    title.Name = "title"
+    title.Parent = languageFrame
+    title.BackgroundColor3 = Color3.fromRGB(50, 57, 73)
+    title.Size = UDim2.new(1, 0, 0, 50)
+    title.ZIndex = 2
+    title.Font = Enum.Font.SourceSansBold
+    title.Text = "TALENTLESS"
+    title.TextColor3 = Color3.fromRGB(255, 255, 255)
+    title.TextSize = 46.000
+
+    uic2.CornerRadius = UDim.new(0, 4)
+    uic2.Name = "uic2"
+    uic2.Parent = title
+
+    closeButton.Name = "closeButton"
+    closeButton.Parent = languageFrame
+    closeButton.BackgroundTransparency = 1.000
+    closeButton.Position = UDim2.new(1, -35, 0, 5)
+    closeButton.Size = UDim2.new(0, 30, 0, 30)
+    closeButton.ZIndex = 55
+    closeButton.Font = Enum.Font.SourceSansBold
+    closeButton.Text = "X"
+    closeButton.TextColor3 = Color3.fromRGB(255, 255, 255)
+    closeButton.TextScaled = true
+
+    closeButton.MouseButton1Click:Connect(function()
+        finished = true
+        languageFrame:Destroy()
+        setLanguage(selectedLanguage)
+    end)
+
+    languageSelection.Name = "languageSelection"
+    languageSelection.Parent = languageFrame
+    languageSelection.Active = true
+    languageSelection.BackgroundColor3 = Color3.fromRGB(76, 82, 101)
+    languageSelection.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    languageSelection.BorderSizePixel = 0
+    languageSelection.Position = UDim2.new(0.315999955, 0, 0.522058845, 0)
+    languageSelection.Size = UDim2.new(0, 167, 0, 84)
+    languageSelection.Visible = false
+    languageSelection.ScrollBarThickness = 1
+
+    UIListLayout.Parent = languageSelection
+    UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+    UIListLayout.SortOrder = Enum.SortOrder.LayoutOrder
+    UIListLayout.Padding = UDim.new(0, 5)
+
+    for code, name in pairs(languageCodes) do
+        local button = Instance.new("TextButton")
+
+        button.Name = "languageButton"
+        button.Parent = languageSelection
+        button.BackgroundColor3 = Color3.fromRGB(76, 82, 101)
+        button.BorderColor3 = Color3.fromRGB(64, 68, 90)
+        button.LayoutOrder = 1
+        button.Position = UDim2.new(0.0514285713, 0, 0, 0)
+        button.Size = UDim2.new(0, 157, 0, 24)
+        button.Font = Enum.Font.SourceSans
+        button.Text = name
+        button.TextColor3 = Color3.fromRGB(255, 255, 255)
+        button.TextScaled = true
+        button.TextSize = 26.000
+        button.TextWrapped = true
+
+        button.MouseButton1Click:Connect(function()
+            OpenSelector.Text = name
+            selectedLanguage = code
+            languageSelection.Visible = false
+        end)
+    end
+
+    UIPadding.Parent = languageSelection
+    UIPadding.PaddingTop = UDim.new(0, 5)
+
+    whatLanguageTitle.Name = "whatLanguageTitle"
+    whatLanguageTitle.Parent = languageFrame
+    whatLanguageTitle.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    whatLanguageTitle.BackgroundTransparency = 1.000
+    whatLanguageTitle.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    whatLanguageTitle.BorderSizePixel = 0
+    whatLanguageTitle.Position = UDim2.new(0.105263159, 0, 0.231617644, 0)
+    whatLanguageTitle.Size = UDim2.new(0, 374, 0, 31)
+    whatLanguageTitle.Font = Enum.Font.SourceSansBold
+    whatLanguageTitle.Text = "what language do you speak?"
+    whatLanguageTitle.TextColor3 = Color3.fromRGB(255, 255, 255)
+    whatLanguageTitle.TextScaled = true
+    whatLanguageTitle.TextSize = 14.000
+    whatLanguageTitle.TextWrapped = true
+
+    Proceed.Name = "Proceed"
+    Proceed.Parent = languageFrame
+    Proceed.BackgroundColor3 = Color3.fromRGB(85, 170, 85)
+    Proceed.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    Proceed.BorderSizePixel = 0
+    Proceed.Position = UDim2.new(0.669473708, 0, 0.871323526, 0)
+    Proceed.Size = UDim2.new(0, 157, 0, 35)
+    Proceed.Font = Enum.Font.SourceSansBold
+    Proceed.Text = "confirm"
+    Proceed.TextColor3 = Color3.fromRGB(255, 255, 255)
+    Proceed.TextSize = 28.000
+    Proceed.TextWrapped = true
+
+    Proceed.MouseButton1Click:Connect(function()
+        pcall(function()
+            writefile("TALENTLESS_language.txt", selectedLanguage)
+        end)
+
+        finished = true
+        languageFrame:Destroy()
+        setLanguage(selectedLanguage)
+    end)
+
+    DropdownFrame.Name = "DropdownFrame"
+    DropdownFrame.Parent = languageFrame
+    DropdownFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+    DropdownFrame.BackgroundTransparency = 1.000
+    DropdownFrame.BorderColor3 = Color3.fromRGB(0, 0, 0)
+    DropdownFrame.BorderSizePixel = 0
+    DropdownFrame.Position = UDim2.new(0.316000015, 0, 0.400000006, 0)
+    DropdownFrame.Size = UDim2.new(0, 175, 0, 35)
+
+    OpenSelector.Name = "OpenSelector"
+    OpenSelector.Parent = DropdownFrame
+    OpenSelector.AnchorPoint = Vector2.new(0.5, 0.5)
+    OpenSelector.BackgroundColor3 = Color3.fromRGB(76, 82, 101)
+    OpenSelector.BorderColor3 = Color3.fromRGB(64, 68, 90)
+    OpenSelector.BorderSizePixel = 2
+    OpenSelector.Position = UDim2.new(0.388571441, 0, 0.5, 0)
+    OpenSelector.Size = UDim2.new(0, 136, 0, 32)
+    OpenSelector.Font = Enum.Font.SourceSansBold
+    OpenSelector.Text = "English"
+    OpenSelector.TextColor3 = Color3.fromRGB(255, 255, 255)
+    OpenSelector.TextScaled = true
+    OpenSelector.TextSize = 14.000
+    OpenSelector.TextWrapped = true
+
+    DropdownArrow.Name = "OpenSelector"
+    DropdownArrow.Parent = DropdownFrame
+    DropdownArrow.AnchorPoint = Vector2.new(0.5, 0.5)
+    DropdownArrow.BackgroundColor3 = Color3.fromRGB(76, 82, 101)
+    DropdownArrow.BorderColor3 = Color3.fromRGB(64, 68, 90)
+    DropdownArrow.BorderSizePixel = 2
+    DropdownArrow.Position = UDim2.new(0.868571401, 0, 0.5, 0)
+    DropdownArrow.Size = UDim2.new(0, 32, 0, 32)
+    DropdownArrow.Font = Enum.Font.SourceSansBold
+    DropdownArrow.Text = "^"
+    DropdownArrow.TextColor3 = Color3.fromRGB(255, 255, 255)
+    DropdownArrow.TextScaled = true
+    DropdownArrow.TextSize = 14.000
+    DropdownArrow.TextWrapped = true
+
+    OpenSelector.MouseButton1Click:Connect(function()
+        languageSelection.Visible = not languageSelection.Visible
+        if languageSelection.Visible then
+            DropdownArrow.Text = "v"
+        else
+            DropdownArrow.Text = "^"
+        end
+    end)
+
+    DropdownArrow.MouseButton1Click:Connect(function()
+        languageSelection.Visible = not languageSelection.Visible
+        if languageSelection.Visible then
+            DropdownArrow.Text = "v"
+        else
+            DropdownArrow.Text = "^"
+        end
+    end)
+
+    repeat wait() until finished
+end
+
+return translator
