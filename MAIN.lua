@@ -1663,8 +1663,15 @@ end
 disable()
 
 songisplaying = false
+_G.songisplaying = false
 
 function playbuttonclicked()
+    -- Recover from stale state when a previous load failed silently.
+    if songisplaying and _G.songisplaying ~= true then
+        songisplaying = false
+        _G.songisplaying = false
+    end
+
     if songisplaying then
         NotificationLibrary:SendNotification("Error", translateText("songplayingerror"), 1)
         playSound("7383525713", 0.5)
@@ -1678,6 +1685,7 @@ function playbuttonclicked()
     end
 
     songisplaying = true
+    _G.songisplaying = true
 
     -- find which song to play
     
@@ -1725,7 +1733,18 @@ function playbuttonclicked()
         end
     end
 
-    repeat wait() until songscript
+    local startedAt = tick()
+    while not songscript and (tick() - startedAt) < 8 do
+        task.wait(0.05)
+    end
+    if not songscript then
+        songisplaying = false
+        _G.songisplaying = false
+        NotificationLibrary:SendNotification("Error", "Song script failed to load.", 5)
+        playSound("7383525713", 0.5)
+        return
+    end
+
     local okRunSong, runSongErr = pcall(function()
         loadstring(songscript)()
     end)
@@ -1734,9 +1753,12 @@ function playbuttonclicked()
         _G.songisplaying = false
         NotificationLibrary:SendNotification("Error", "Song script failed to run.", 5)
         warn("[TALENTLESS] Song load error: " .. tostring(runSongErr))
+        playSound("7383525713", 0.5)
         return
     end
     repeat wait() until _G.STOPIT == true 
+    songisplaying = false
+    _G.songisplaying = false
 end -- close the play song onclick function
 
 playsong.MouseButton1Click:Connect(playbuttonclicked)
