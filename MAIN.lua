@@ -13,7 +13,40 @@ local function fetch(path)
     return game:HttpGet(BASE_URL .. path, true)
 end
 
-local translator = loadstring(fetch("translator.lua"))()
+local function loadRemoteModule(path)
+    local okFetch, source = pcall(function()
+        return fetch(path)
+    end)
+    if not okFetch then
+        return nil, "fetch failed for " .. path .. ": " .. tostring(source)
+    end
+
+    local chunk, loadErr = loadstring(source)
+    if not chunk then
+        return nil, "compile failed for " .. path .. ": " .. tostring(loadErr)
+    end
+
+    local okRun, result = pcall(chunk)
+    if not okRun then
+        return nil, "runtime failed for " .. path .. ": " .. tostring(result)
+    end
+
+    return result
+end
+
+local translator, translatorErr = loadRemoteModule("translator.lua")
+if not translator then
+    warn("[TALENTLESS] translator fallback: " .. tostring(translatorErr))
+    translator = {
+        translateText = function(_, text)
+            return tostring(text)
+        end,
+        requestLang = function()
+            _G.languages = _G.languages or {["en"] = true}
+        end
+    }
+    _G.languages = _G.languages or {["en"] = true}
+end
 
 local function translateText(text)
     return translator:translateText(text)
@@ -42,7 +75,15 @@ local function fitText(button)
     return size
 end
 
-local NotificationLibrary = loadstring(fetch("notif_lib.lua"))()
+local NotificationLibrary, notifErr = loadRemoteModule("notif_lib.lua")
+if not NotificationLibrary then
+    warn("[TALENTLESS] notif fallback: " .. tostring(notifErr))
+    NotificationLibrary = {
+        SendNotification = function(_, title, message)
+            warn("[TALENTLESS][" .. tostring(title) .. "] " .. tostring(message))
+        end
+    }
+end
 
 local ContentProvider = game:GetService("ContentProvider")
 
