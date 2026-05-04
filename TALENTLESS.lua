@@ -11,6 +11,17 @@ end
 
 getgenv().TALENTLESS_BASE_URL = baseUrl
 
-pcall(function()
-    loadstring(game:HttpGet(baseUrl .. "MAIN.lua", true))()
+local ok, err = pcall(function()
+    local source = game:HttpGet(baseUrl .. "MAIN.lua", true)
+    local chunk, loadErr = loadstring(source)
+    if not chunk then
+        error("Failed to compile MAIN.lua: " .. tostring(loadErr))
+    end
+    chunk()
 end)
+
+if not ok then
+    warn("[TALENTLESS] Bootstrap failed.")
+    warn("[TALENTLESS] Base URL: " .. tostring(baseUrl))
+    warn("[TALENTLESS] Error: " .. tostring(err))
+end
